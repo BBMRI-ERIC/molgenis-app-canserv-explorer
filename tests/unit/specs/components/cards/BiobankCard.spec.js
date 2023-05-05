@@ -25,20 +25,20 @@ describe('BiobankCard', () => {
         id: 'biobank-1',
         name: 'Dummy biobank',
         collections: [{
-          name: 'z',
-          type: [{ label: 'col-type-a' }],
+          name: 'z'
+/*           type: [{ label: 'col-type-a' }],
           sub_collections: [{
             type: [{ label: 'col-type-b' }],
             sub_collections: []
-          }]
+          }] */
         },
         {
-          name: 'a',
-          type: [{ label: 'col-type-d' }],
+          name: 'a'
+/*           type: [{ label: 'col-type-d' }],
           sub_collections: [{
             type: [{ label: 'col-type-e' }],
             sub_collections: []
-          }]
+          }] */
         }]
       }
     }

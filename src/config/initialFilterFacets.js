@@ -11,11 +11,30 @@ const filterDefinitions = [
   }, */
   {
     name: 'type',
+    label: 'Field',
+    tableName: 'canserv_service_fields',
+    columnName: 'type',
+    humanReadableString: 'Service field(s):',
+    removeOptions: ['other'],
+    showFacet: true,
+    adaptive: true
+  },
+  {
+    name: 'type',
     label: 'Service type',
-    tableName: 'eu_bbmri_eric_collection_types',
+    tableName: 'canserv_service_types',
     columnName: 'type',
     humanReadableString: 'Service type(s):',
     removeOptions: ['other'],
+    showFacet: true,
+    adaptive: true
+  },
+  {
+    name: 'category',
+    label: 'Service category',
+    tableName: 'canserv_service_categories',
+    columnName: 'category',
+    humanReadableString: 'Service categoris:',
     showFacet: true,
     adaptive: true
   },
@@ -29,32 +48,6 @@ const filterDefinitions = [
     applyTo: ['eu_bbmri_eric_collections', 'eu_bbmri_eric_biobanks'],
     showFacet: true,
     adaptive: true
-  },
-  {
-    name: 'categories',
-    label: 'Categories',
-    tableName: 'eu_bbmri_eric_category',
-    columnName: 'categories',
-    humanReadableString: 'Categories:',
-    showFacet: true,
-    adaptive: true
-  },
-  {
-    name: 'materials',
-    label: 'Material type',
-    tableName: 'eu_bbmri_eric_material_types',
-    columnName: 'materials',
-    humanReadableString: 'Material type(s):',
-    removeOptions: ['other'],
-    showFacet: true,
-    adaptive: true
-  },
-  {
-    name: 'commercial_use',
-    label: 'Collaboration type',
-    columnName: 'collaboration_commercial',
-    humanReadableString: 'Biobank collaboration type(s):',
-    showFacet: true
   },
   {
     name: 'biobank_capabilities',

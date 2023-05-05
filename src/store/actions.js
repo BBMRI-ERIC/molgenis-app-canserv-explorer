@@ -9,14 +9,14 @@ import { configurationActions } from './configuration/configurationActions'
 import { collectionActions, COLLECTION_REPORT_ATTRIBUTE_SELECTOR } from './collection/collectionActions'
 
 /* API PATHS */
-const BIOBANK_API_PATH = '/api/v2/eu_bbmri_eric_biobanks'
-export const COLLECTION_API_PATH = '/api/v2/eu_bbmri_eric_collections'
+const BIOBANK_API_PATH = '/api/v2/canserv_service_providers'
+export const COLLECTION_API_PATH = '/api/v2/canserv_services'
 
-const NETWORK_API_PATH = '/api/v2/eu_bbmri_eric_networks'
+const NETWORK_API_PATH = '/api/v2/canserv_networks'
 /**/
 
 /**  Query Parameters */
-export const COLLECTION_ATTRIBUTE_SELECTOR = 'collections(id,description,materials,diagnosis_available(label,uri,code),name,type,order_of_magnitude(*),size,sub_collections(name,id,sub_collections(*),parent_collection,order_of_magnitude,materials(label,uri),data_categories),parent_collection,quality(*),data_categories(label,uri))'
+export const COLLECTION_ATTRIBUTE_SELECTOR = 'collections(id,description,name,type,category)'
 
 export default {
   ...collectionActions,
@@ -76,7 +76,7 @@ export default {
       return
     }
 
-    let url = '/api/data/eu_bbmri_eric_collections?size=1&filter=id&q='
+    let url = '/api/data/canserv_services?size=1&filter=id&q='
     for (const activeFilterName in activeFilterNames) {
       const name = activeFilterNames[activeFilterName]
       if (state.filters.satisfyAll.includes(name)) {

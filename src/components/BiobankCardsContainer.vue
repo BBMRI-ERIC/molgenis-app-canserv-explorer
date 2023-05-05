@@ -21,7 +21,7 @@
       <pagination class="mt-4" />
     </div>
     <div v-else-if="!loading && foundBiobanks === 0" class="status-text">
-      <h4>No biobanks were found</h4>
+      <h4>No service providers were found</h4>
     </div>
 
     <div v-else class="status-text">

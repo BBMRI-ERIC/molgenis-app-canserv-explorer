@@ -106,7 +106,7 @@
               <collection-selector
                 v-if="numberOfCollections > 1"
                 class="text-right mr-1 ml-auto align-self-center"
-                :collectionData="biobank.collections"
+                :collectionData="biobank.services"
                 bookmark
                 iconOnly
                 multi></collection-selector>
@@ -121,7 +121,7 @@
               <div v-if="showCollections" class="mb-2">
                 <div class="pl-2 py-2 d-flex">
                   <router-link
-                    :to="'/collection/' + collectionDetail.id"
+                    :to="'/service/' + collectionDetail.id"
                     title="Service details"
                     class="text-dark">
                     <span
@@ -224,7 +224,7 @@ export default {
       return this.biobank.collectionDetails.length - 1
     },
     numberOfCollections () {
-      return this.biobank.collections ? this.biobank.collections.length : 0
+      return this.biobank.services ? this.biobank.services.length : 0
     },
     cardContainerHeight () {
       const charactersInName = this.biobank.name.length
@@ -265,9 +265,9 @@ export default {
     },
     /** broken */
     biobankInSelection () {
-      if (!this.biobank.collections) return false
+      if (!this.biobank.services) return false
 
-      const biobankCollectionSelection = this.biobank.collections
+      const biobankCollectionSelection = this.biobank.services
         .filter(bcf => !bcf.parent_collection)
         .map(bc => ({ label: bc.label || bc.name, value: bc.id }))
       return this.selectedCollections

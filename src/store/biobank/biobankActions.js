@@ -3,7 +3,7 @@ import api from '@molgenis/molgenis-api-client'
 import { encodeRsqlValue, transformToRSQL } from '@molgenis/rsql'
 import { COLLECTION_ATTRIBUTE_SELECTOR } from '../actions'
 
-export const BIOBANK_API_PATH = '/api/v2/eu_bbmri_eric_biobanks'
+export const BIOBANK_API_PATH = '/api/v2/canserv_service_providers'
 
 export const biobankActions = {
   QueryBiobanks ({ state, commit, getters }) {
@@ -15,7 +15,7 @@ export const biobankActions = {
       size = 10000
     }
 
-    let url = `/api/data/eu_bbmri_eric_biobanks?filter=id&page=${state.currentPage - 1}&size=${size}&sort=name`
+    let url = `/api/data/canserv_service_providers?filter=id&page=${state.currentPage - 1}&size=${size}&sort=name`
     if (getters.biobankRsql) {
       url = `${url}&q=${encodeRsqlValue(getters.biobankRsql)}`
     }
