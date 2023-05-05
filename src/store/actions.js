@@ -16,7 +16,7 @@ const NETWORK_API_PATH = '/api/v2/canserv_networks'
 /**/
 
 /**  Query Parameters */
-export const COLLECTION_ATTRIBUTE_SELECTOR = 'collections(id,description,name,type,category)'
+export const COLLECTION_ATTRIBUTE_SELECTOR = 'id,description,name'
 
 export default {
   ...collectionActions,

@@ -38,7 +38,7 @@
             }}</span>
           </td>
         </tr>
-        <tr
+<!--         <tr
           v-if="subCollection.sub_collections.length"
           :key="'subsubs-' + subCollection.id">
           <td colspan="5" class="sub-table-cell">
@@ -66,7 +66,7 @@
             </b-collapse>
           </td>
         </tr>
-      </template>
+ -->      </template>
     </tbody>
   </table>
 </template>

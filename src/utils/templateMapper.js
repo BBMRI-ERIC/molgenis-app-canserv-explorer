@@ -120,7 +120,7 @@ export const getViewmodel = (object, columns) => {
   return { attributes }
 }
 
-const mapSubcollections = (collections, level) => {
+/* const mapSubcollections = (collections, level) => {
   const subCollections = []
 
   for (const collection of collections) {
@@ -142,14 +142,14 @@ const mapSubcollections = (collections, level) => {
     }
   }
   return subCollections
-}
+} */
 
 export const getCollectionDetails = collection => {
   const viewmodel = getViewmodel(collection, state.collectionColumns)
 
-  if (collection.sub_collections && collection.sub_collections.length) {
+/*   if (collection.sub_collections && collection.sub_collections.length) {
     viewmodel.sub_collections = mapSubcollections(collection.sub_collections, 1)
-  }
+  } */
 
   return {
     ...collection,
@@ -175,10 +175,10 @@ function extractCollectionTypes (collections, prevCollectionHashmap) {
       }
     }
 
-    if (collection.sub_collections && collection.sub_collections.length) {
+    /*     if (collection.sub_collections && collection.sub_collections.length) {
       const newHashmap = extractCollectionTypes(collection.sub_collections, collectionTypes)
       collectionTypes = { ...collectionTypes, ...newHashmap }
-    }
+    } */
   }
   return collectionTypes
 }

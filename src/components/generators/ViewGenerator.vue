@@ -8,7 +8,7 @@
         :key="attribute.id"/>
     </table>
 
-    <div
+<!--     <div
       v-if="
         renderObject.sub_collections && renderObject.sub_collections.length > 0
       "
@@ -19,7 +19,7 @@
         v-for="subcollection of renderObject.sub_collections"
         :key="subcollection.id"
         :collection="subcollection"></subcollection>
-    </div>
+    </div> -->
   </div>
 </template>
 

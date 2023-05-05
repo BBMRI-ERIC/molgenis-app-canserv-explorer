@@ -1,14 +1,17 @@
 
-import { fixCollectionTree } from '../helpers'
+/* import { fixCollectionTree } from '../helpers' */
 
 export const biobankMutations = {
   SetBiobanks (state, biobanks) {
     const biobankLookup = {}
 
     biobanks.forEach(biobank => {
-      biobankLookup[biobank.id] = fixCollectionTree(biobank)
+    /* biobankLookup[biobank.id] = fixCollectionTree(biobank) */
+      biobankLookup[biobank.id] = biobankLookup[biobank.id]
     })
     state.biobanks = { ...state.biobanks, ...biobankLookup }
+
+    /*    state.biobanks = biobanks */
   },
   SetBiobankIds (state, biobankIds) {
     state.biobankIds = biobankIds

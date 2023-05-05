@@ -40,7 +40,7 @@ const expected = {
     _href: '/api/v2/eu_bbmri_eric_biobank_size/3',
     size: '777'
   },
-  sub_collections: [
+/*   sub_collections: [
     {
       data_categories: [
         {
@@ -65,7 +65,7 @@ const expected = {
         name: 'beautiful collection'
       },
       sub_collections: []
-    },
+    }, */
     {
       data_categories: [
         {
