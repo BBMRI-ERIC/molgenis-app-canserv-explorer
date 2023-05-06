@@ -1,6 +1,7 @@
-import { createRSQLQuery, createBiobankRSQLQuery, filterCollectionTree, getHumanReadableString } from './helpers'
+/* import { createRSQLQuery, createBiobankRSQLQuery, filterCollectionTree, getHumanReadableString } from './helpers' */
+import { createRSQLQuery, createBiobankRSQLQuery, getHumanReadableString } from './helpers'
 import { groupCollectionsByBiobankId } from '../utils/grouping'
-import { sortCollectionsByName } from '../utils/sorting'
+/* import { sortCollectionsByName } from '../utils/sorting' */
 
 export default {
   getHumanReadableString,
@@ -30,10 +31,12 @@ export default {
       if (!Object.prototype.hasOwnProperty.call(biobanks, biobankId)) {
         return biobankId
       }
+      console.log('biobankId', biobankId)
       const biobank = biobanks[biobankId]
       return {
         ...biobank,
-        collections: sortCollectionsByName(filterCollectionTree(collectionInfo.map(it => it.collectionId), biobank.collections))
+        collections: collectionInfo.map(it => it.collectionId)
+        /* collections: sortCollectionsByName(filterCollectionTree(collectionInfo.map(it => it.collectionId), biobank.collections)) */
       }
     })
   },

@@ -65,8 +65,8 @@ export const createBiobankRSQLQuery = (state) => transformToRSQL({
   operator: 'AND',
   operands: flatten([
     createInQuery('country', state.filters.selections.country || []),
-    createInQuery('id', state.biobankIdsWithSelectedQuality),
-    createQuery(state.filters.selections.biobank_capabilities, 'capabilities', state.filters.satisfyAll.includes('biobank_capabilities'))
+    createInQuery('id', state.biobankIdsWithSelectedQuality)
+    /*    createQuery(state.filters.selections.biobank_capabilities, 'capabilities', state.filters.satisfyAll.includes('biobank_capabilities')) */
   ])
 })
 

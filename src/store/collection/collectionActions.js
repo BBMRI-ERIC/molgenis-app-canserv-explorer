@@ -19,8 +19,10 @@ export const COLLECTION_REPORT_ATTRIBUTE_SELECTOR = () => {
 export const collectionActions = {
 
   async initializeCollectionRelationData ({ commit }) {
+    console.log('initializeCollectionRelationData')
     // biobank_label is a mapping in the collection table to the name column of biobank table
-    const url = '/api/data/eu_bbmri_eric_collections?filter=id,biobank(id,name,label),name,label,collaboration_commercial,parent_collection&expand=biobank&size=10000&sort=biobank_label'
+    /* const url = '/api/data/eu_bbmri_eric_collections?filter=id,biobank(id,name,label),name,label,collaboration_commercial,parent_collection&expand=biobank&size=10000&sort=biobank_label' */
+    const url = '/api/v2/canserv_services?filter=id&size=10000'
 
     const response = await api.get(url).catch(error => commit('SetError', error))
     commit('SetAllCollectionRelationData', response)
@@ -30,12 +32,14 @@ export const collectionActions = {
    */
   async GetCollectionInfo ({ state, commit, getters, dispatch }) {
     // check if initial data is present, else fetch that first
+    console.log('GetCollectionInfo')
     if (state.collectionRelationData.length === 0) {
       await dispatch('initializeCollectionRelationData')
     }
 
     commit('SetCollectionInfo', undefined)
-    let url = '/api/data/eu_bbmri_eric_collections?filter=id&size=10000&sort=biobank_label&expand=materials,diagnosis_available'
+    /* let url = '/api/data/eu_bbmri_eric_collections?filter=id&size=10000&sort=biobank_label&expand=materials,diagnosis_available' */
+    let url = '/api/v2/canserv_services?filter=id&size=10000'
     if (getters.rsql) {
       url = `${url}&q=${encodeRsqlValue(getters.rsql)}`
     }
@@ -48,6 +52,7 @@ export const collectionActions = {
       })
   },
   GetCollectionReport ({ commit }, collectionId) {
+    console.log('GetCollectionReport')
     commit('SetLoading', true)
     api.get(`${COLLECTION_API_PATH}/${collectionId}?attrs=${COLLECTION_REPORT_ATTRIBUTE_SELECTOR()}`).then(response => {
       commit('SetCollectionReport', response)
@@ -58,11 +63,13 @@ export const collectionActions = {
     })
   },
   AddCollectionsToSelection ({ commit, getters }, { collections, bookmark }) {
+    console.log('AddCollectionsToSelection')
     commit('SetCartValidationStatus', false)
     commit('SetCollectionsToSelection', { collections, bookmark })
     commit('SetSearchHistory', getters.getHumanReadableString)
   },
   GetPodiumCollections ({ state, commit }) {
+    console.log('GetPodiumCollections')
     if (state.isPodium && state.podiumCollectionIds.length === 0) { // only fetch once.
       api.get("/api/data/eu_bbmri_eric_collections?num=10000&filter=id&q=podium!=''").then(response => {
         commit('SetPodiumCollections', response)
