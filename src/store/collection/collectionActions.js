@@ -22,7 +22,7 @@ export const collectionActions = {
     console.log('initializeCollectionRelationData')
     // biobank_label is a mapping in the collection table to the name column of biobank table
     /* const url = '/api/data/eu_bbmri_eric_collections?filter=id,biobank(id,name,label),name,label,collaboration_commercial,parent_collection&expand=biobank&size=10000&sort=biobank_label' */
-    const url = '/api/v2/canserv_services?filter=id&size=10000'
+    const url = '/api/data/canserv_services?filter=id,service_provider(id,name,label),name,label&size=10000&expand=service_provider'
 
     const response = await api.get(url).catch(error => commit('SetError', error))
     commit('SetAllCollectionRelationData', response)
@@ -39,7 +39,7 @@ export const collectionActions = {
 
     commit('SetCollectionInfo', undefined)
     /* let url = '/api/data/eu_bbmri_eric_collections?filter=id&size=10000&sort=biobank_label&expand=materials,diagnosis_available' */
-    let url = '/api/v2/canserv_services?filter=id&size=10000'
+    let url = '/api/data/canserv_services?filter=id&size=10000'
     if (getters.rsql) {
       url = `${url}&q=${encodeRsqlValue(getters.rsql)}`
     }

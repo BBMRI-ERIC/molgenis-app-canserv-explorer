@@ -5,11 +5,11 @@ export const collectionMutations = {
     const collectionRelationData = response.items.map(item => ({
       collectionId: item.data.id,
       collectionName: item.data.label || item.data.name,
-      biobankId: item.data.biobank.data.id,
-      biobankName: item.data.biobank.data.label || item.data.biobank.data.name,
+      biobankId: item.data.service_provider.data.id,
+      biobankName: item.data.service_provider.data.label || item.data.service_provider.data.name,
       isSubcollection: item.data.parent_collection !== undefined,
-      parentCollection: item.data.parent_collection,
-      commercialUse: item.data.collaboration_commercial
+      parentCollection: item.data.parent_collection !== undefined,
+      commercialUse: item.data.collaboration_commercial !== undefined
     }))
 
     const nonCommercialUseCollections = []
