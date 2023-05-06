@@ -11,16 +11,19 @@
       'flip',
     ]">
     <div tabindex="0">
+      {{debug("biobank card - Details 1")}}
+      {{debug(JSON.stringify(biobank))}}
       <section>
         <div v-if="loading" class="loading-screen">
           <span class="fa fa-spinner fa-spin fa-lg" aria-hidden="true"></span>
         </div>
         <div v-else>
+          {{debug("biobank card - Details 2")}}
           <header class="border-0 card-header p-1">
             <h5 class="p-1 pb-0 mt-1">
               <router-link
                 :to="'/biobank/' + biobank.id"
-                title="Biobank details"
+                title="Service Provider details"
                 class="text-dark">
                 <span
                   class="fa fa-server mr-2 text-primary"
@@ -40,6 +43,8 @@
           </header>
 
           <div class="shadow-sm" v-if="numberOfCollections">
+            {{debug("biobank card - Services")}}
+
             <button
               class="btn btn-link text-info pl-2"
               @click.prevent="showCollections = true">
@@ -114,6 +119,8 @@
             <div class="pl-2" v-if="!numberOfCollections">
               This biobank has no collections yet.
             </div>
+            {{debug("biobank collection details - loading")}}
+            {{debug(JSON.stringify(biobank.collectionDetails))}}
             <div
               class="collection-items mx-1"
               v-for="(collectionDetail, index) of biobank.collectionDetails"
@@ -198,6 +205,9 @@ export default {
     }
   },
   methods: {
+    debug (...args) {
+      console.log(...args)
+    },
     getCollectionDetails,
     collectionViewmodel (collectiondetails) {
       const attributes = []
@@ -227,6 +237,8 @@ export default {
       return this.biobank.services ? this.biobank.services.length : 0
     },
     cardContainerHeight () {
+      console.log('cardContainerHeight')
+      console.log(JSON.stringify(this.biobank))
       const charactersInName = this.biobank.name.length
 
       let height = 20.5 // default

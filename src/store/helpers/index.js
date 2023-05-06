@@ -1,4 +1,5 @@
-import { diagnosisAvailableQuery, createInQuery, createQuery, createLikeQuery } from '../../utils'
+// import { diagnosisAvailableQuery, createInQuery, createQuery, createLikeQuery } from '../../utils'
+import { createInQuery, createQuery, createLikeQuery } from '../../utils'
 import { flatten } from 'lodash'
 import { transformToRSQL } from '@molgenis/rsql'
 
@@ -11,15 +12,17 @@ export const isCodeRegex = /^(ORPHA|[A-Z]|[XVI]+):?(\d{0,2}(-([A-Z]\d{0,2})?|\.\
  * q=diagnosis_available.code=in=(C18,L40)
  * q=standards.id=in=(cen-ts-16835-1-2015,cen-ts-16827-1-2015)
  */
+// TODO refactor createRSQLQuery for canSERV
 export const createRSQLQuery = (state) => transformToRSQL({
   operator: 'AND',
   operands: flatten([
     // diagnosis_availabe uses a dynamic decorator to do automatic tree expansion. Therefor it MUST be on the column from collection itself.
     // And NOT on the column from the EntityType (table) it references to
-    diagnosisAvailableQuery(state.filters.selections.diagnosis_available, 'diagnosis_available', state.filters.satisfyAll.includes('diagnosis_available')),
+    /*     diagnosisAvailableQuery(state.filters.selections.diagnosis_available, 'diagnosis_available', state.filters.satisfyAll.includes('diagnosis_available')),
     createSearchInputQuery(state, ['name', 'id', 'acronym', 'diagnosis_available.id', 'diagnosis_available.code', 'diagnosis_available.label', 'diagnosis_available.ontology', 'materials.id', 'materials.label', 'biobank.name', 'biobank.id', 'biobank.acronym']),
-    createRsqlQueriesFromState(state)
-  ])
+    createRsqlQueriesFromState(state) */
+    createSearchInputQuery(state, ['name', 'id', 'acronym']),
+    createRsqlQueriesFromState(state)])
 })
 
 /**
@@ -61,11 +64,13 @@ function createRsqlQueriesFromState (state) {
   return flatten(queries)
 }
 
+// TODO: refactor createQuery for canSERV
 export const createBiobankRSQLQuery = (state) => transformToRSQL({
   operator: 'AND',
   operands: flatten([
     createInQuery('country', state.filters.selections.country || []),
-    createInQuery('id', state.biobankIdsWithSelectedQuality)
+    createRsqlQueriesFromState(state)
+    /* createInQuery('id', state.biobankIdsWithSelectedQuality) */
     /*    createQuery(state.filters.selections.biobank_capabilities, 'capabilities', state.filters.satisfyAll.includes('biobank_capabilities')) */
   ])
 })

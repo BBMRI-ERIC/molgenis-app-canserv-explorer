@@ -3,12 +3,16 @@
 
 export const biobankMutations = {
   SetBiobanks (state, biobanks) {
+    console.log('SetBiobanks', biobanks)
     const biobankLookup = {}
 
     biobanks.forEach(biobank => {
     /* biobankLookup[biobank.id] = fixCollectionTree(biobank) */
-      biobankLookup[biobank.id] = biobankLookup[biobank.id]
+      console.log('SetBiobanks-1', biobank.id)
+      biobankLookup[biobank.id] = biobank
+      console.log('SetBiobanks-2', biobankLookup[biobank.id], biobank)
     })
+    console.log('SetBiobanks-3', biobankLookup)
     state.biobanks = { ...state.biobanks, ...biobankLookup }
 
     /*    state.biobanks = biobanks */

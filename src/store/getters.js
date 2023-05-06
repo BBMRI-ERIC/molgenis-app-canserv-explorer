@@ -10,28 +10,35 @@ export default {
   },
   loading: ({ collectionInfo, biobankIds }) => !(biobankIds && collectionInfo),
   biobanks: ({ collectionInfo, biobankIds, biobanks }, { loading, rsql, biobankRsql }) => {
+    console.log('getters-biobanks-1', biobankIds, collectionInfo, biobanks)
     if (loading) {
+      console.log('getters-biobanks-1.1 loading')
       return []
     }
+    console.log('getters-biobanks-2', biobankIds)
     let ids = biobankIds
+    console.log('getters-biobanks-2.1', ids)
     if (rsql) {
+      console.log('getters-biobanks-3', ids, rsql, collectionInfo)
       ids = collectionInfo
         /** biobank IDs present in collectionIds */
         .map(({ biobankId }) => biobankId)
         /** first occurrence of ID only */
         .filter((value, index, self) => self.indexOf(value) === index)
     }
-
+    console.log('getters-biobanks-4', ids)
     if (biobankRsql) {
+      console.log('getters-biobanks-5', biobankRsql, ids)
       ids = ids.filter(id => biobankIds.includes(id))
     }
 
     return ids.map(biobankId => {
       /** lazy loading, return only the id, which will be fetched on demand */
+      console.log('getter-biobanks-6', biobankId)
       if (!Object.prototype.hasOwnProperty.call(biobanks, biobankId)) {
         return biobankId
       }
-      console.log('biobankId', biobankId)
+      console.log('getter-biobanks-7', biobankId)
       const biobank = biobanks[biobankId]
       return {
         ...biobank,
@@ -74,14 +81,24 @@ export default {
   collectionBiobankDictionary: state => state.collectionBiobankDictionary,
   getFoundBiobankIds: (_, { biobanks }) => biobanks.map(b => b.id || b).filter(bid => bid !== undefined),
   foundBiobanks: (state, { getFoundBiobankIds, biobankRsql, parentCollections }) => {
+    console.log('foundBiobanks-1')
     /**  there are no collections found, so nothing to show. */
     if (!parentCollections.length) {
+      console.log('foundBiobanks-2')
+
       return 0
     }
+    console.log('foundBiobanks-3')
 
     if (biobankRsql) {
+      console.log('foundBiobanks-4')
+
       return getFoundBiobankIds.length
-    } else { return state.biobankCount }
+    } else {
+      console.log('foundBiobanks-5')
+
+      return state.biobankCount
+    }
   },
   foundCollectionIds (state, { getFoundBiobankIds }) {
     /** only if there are biobanks, then there are collections. we can't have rogue collections :) */

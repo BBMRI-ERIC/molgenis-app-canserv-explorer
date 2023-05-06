@@ -147,7 +147,7 @@ export const getViewmodel = (object, columns) => {
 export const getCollectionDetails = collection => {
   const viewmodel = getViewmodel(collection, state.collectionColumns)
 
-/*   if (collection.sub_collections && collection.sub_collections.length) {
+  /*   if (collection.sub_collections && collection.sub_collections.length) {
     viewmodel.sub_collections = mapSubcollections(collection.sub_collections, 1)
   } */
 
@@ -161,7 +161,11 @@ export const getCollectionDetails = collection => {
  * Get all the types available within the collection tree
  */
 function extractCollectionTypes (collections, prevCollectionHashmap) {
-  let collectionTypes = prevCollectionHashmap && Object.keys(prevCollectionHashmap).length ? prevCollectionHashmap : {}
+  const collectionTypes = prevCollectionHashmap && Object.keys(prevCollectionHashmap).length ? prevCollectionHashmap : {}
+
+  console.log('extractCollectionTypes')
+  console.log('extractCollectionTypes', collections, prevCollectionHashmap)
+  console.log(JSON.stringify(collectionTypes))
 
   for (const collection of collections) {
     if (collection.type) {
@@ -180,10 +184,13 @@ function extractCollectionTypes (collections, prevCollectionHashmap) {
       collectionTypes = { ...collectionTypes, ...newHashmap }
     } */
   }
+  console.log(JSON.stringify(collectionTypes))
   return collectionTypes
 }
 
 export const getBiobankDetails = (biobank) => {
+  console.log('getBiobankDetails')
+  console.log('getBiobankDetails', biobank)
   // check if biobank is only the id (lazy loading)
   if (typeof biobank === 'string') {
     return biobank
