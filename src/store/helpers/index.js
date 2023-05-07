@@ -171,15 +171,19 @@ const getLocationHref = () => window.location.href
     .map(collection => fixSubCollectionTree(biobank.collections, collection.id))
 }) */
 
-/* export const filterCollectionTree = (collectionIds, collections) => ({
-   collections.reduce(
+export const filterCollectionTree = (collectionIds, collections) =>
+  collections.reduce(
     (accumulator, collection) => {
-      const filteredSubCollections = filterCollectionTree(collectionIds, collection.sub_collections)
+      /*       const filteredSubCollections = filterCollectionTree(collectionIds, collection.sub_collections)
       if (collectionIds.includes(collection.id) || filteredSubCollections.length) {
         return [...accumulator, { ...collection, sub_collections: filteredSubCollections }]
+      } */
+      // const filteredSubCollections = filterCollectionTree(collectionIds, collection.sub_collections)
+      if (collectionIds.includes(collection.id)) {
+        return [...accumulator, { ...collection }]
       }
       return accumulator
-    }, []) */
+    }, [])
 
 export default {
   createBiobankRSQLQuery,

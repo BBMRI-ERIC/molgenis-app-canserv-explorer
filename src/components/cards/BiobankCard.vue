@@ -11,14 +11,13 @@
       'flip',
     ]">
     <div tabindex="0">
-      {{debug("biobank card - Details 1")}}
-      {{debug(JSON.stringify(biobank))}}
+      {{debug("BiobankCard-biobank card - Details 1",JSON.stringify(biobank))}}
       <section>
         <div v-if="loading" class="loading-screen">
           <span class="fa fa-spinner fa-spin fa-lg" aria-hidden="true"></span>
         </div>
         <div v-else>
-          {{debug("biobank card - Details 2")}}
+          {{debug("BiobankCard-biobank card - Details 2")}}
           <header class="border-0 card-header p-1">
             <h5 class="p-1 pb-0 mt-1">
               <router-link
@@ -43,7 +42,7 @@
           </header>
 
           <div class="shadow-sm" v-if="numberOfCollections">
-            {{debug("biobank card - Services")}}
+            {{debug("BiobankCard-biobank card - Services")}}
 
             <button
               class="btn btn-link text-info pl-2"
@@ -111,7 +110,7 @@
               <collection-selector
                 v-if="numberOfCollections > 1"
                 class="text-right mr-1 ml-auto align-self-center"
-                :collectionData="biobank.services"
+                :collectionData="biobank.collections"
                 bookmark
                 iconOnly
                 multi></collection-selector>
@@ -119,7 +118,7 @@
             <div class="pl-2" v-if="!numberOfCollections">
               This biobank has no collections yet.
             </div>
-            {{debug("biobank collection details - loading")}}
+            {{debug("BiobankCard-biobank collection details - loading")}}
             {{debug(JSON.stringify(biobank.collectionDetails))}}
             <div
               class="collection-items mx-1"
@@ -229,15 +228,19 @@ export default {
       'collectionColumns',
       'biobankCardShowCollections'
     ]),
-    ...mapGetters(['selectedCollections', 'uiText']),
+    ...mapGetters(['BiobankCard-selectedCollections', 'uiText']),
     lastCollection () {
       return this.biobank.collectionDetails.length - 1
     },
     numberOfCollections () {
-      return this.biobank.services ? this.biobank.services.length : 0
+      console.log('BiobankCard-numberOfCollections')
+      console.log('BiobankCard-numberOfCollections-1', this.biobank)
+      console.log('BiobankCard-numberOfCollections-2', this.biobank.services)
+      console.log('BiobankCard-numberOfCollections-3', this.biobank.collections)
+      return this.biobank.collections ? this.biobank.collections.length : 0
     },
     cardContainerHeight () {
-      console.log('cardContainerHeight')
+      console.log('BiobankCard-cardContainerHeight')
       console.log(JSON.stringify(this.biobank))
       const charactersInName = this.biobank.name.length
 
@@ -277,16 +280,27 @@ export default {
     },
     /** broken */
     biobankInSelection () {
-      if (!this.biobank.services) return false
+      console.log('BiobankCard-biobankInSelection-1')
+      if (!this.biobank.collections) {
+        console.log('BiobankCard-biobankInSelection-2')
+        return false
+      }
 
-      const biobankCollectionSelection = this.biobank.services
+      console.log('BiobankCard-biobankInSelection-3', this.biobank.collections)
+      const biobankCollectionSelection = this.biobank.collections
         .filter(bcf => !bcf.parent_collection)
         .map(bc => ({ label: bc.label || bc.name, value: bc.id }))
-      return this.selectedCollections
+      console.log('BiobankCard-biobankInSelection-4', biobankCollectionSelection)
+
+      const thisSelectedCollections = biobankCollectionSelection
         .map(sc => sc.value)
         .some(id => biobankCollectionSelection.map(pc => pc.value).includes(id))
+
+      console.log('BiobankCard-biobankInSelection-5', thisSelectedCollections)
+      return thisSelectedCollections
     },
     loading () {
+      console.log('BiobankCard-biobankInSelection-loading')
       return typeof this.biobank === 'string'
     }
   },

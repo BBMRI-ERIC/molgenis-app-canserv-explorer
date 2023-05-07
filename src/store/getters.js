@@ -1,7 +1,7 @@
 /* import { createRSQLQuery, createBiobankRSQLQuery, filterCollectionTree, getHumanReadableString } from './helpers' */
-import { createRSQLQuery, createBiobankRSQLQuery, getHumanReadableString } from './helpers'
+import { createRSQLQuery, createBiobankRSQLQuery, filterCollectionTree, getHumanReadableString } from './helpers'
 import { groupCollectionsByBiobankId } from '../utils/grouping'
-/* import { sortCollectionsByName } from '../utils/sorting' */
+import { sortCollectionsByName } from '../utils/sorting'
 
 export default {
   getHumanReadableString,
@@ -39,11 +39,12 @@ export default {
         return biobankId
       }
       console.log('getter-biobanks-7', biobankId)
+      console.log('getter-biobanks-8', biobanks[biobankId])
       const biobank = biobanks[biobankId]
       return {
         ...biobank,
-        collections: collectionInfo.map(it => it.collectionId)
-        /* collections: sortCollectionsByName(filterCollectionTree(collectionInfo.map(it => it.collectionId), biobank.collections)) */
+        /* collections: collectionInfo.map(it => it.collectionId) */
+        collections: sortCollectionsByName(filterCollectionTree(collectionInfo.map(it => it.collectionId), biobank.collections))
       }
     })
   },
