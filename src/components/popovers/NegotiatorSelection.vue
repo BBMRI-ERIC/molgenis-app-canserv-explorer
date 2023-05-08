@@ -24,11 +24,11 @@
             :key="`${collection.label}-${index}`"
             v-for="(collection, index) in cart.collections">
             <div>
-              <font-awesome-icon
+              <!--<font-awesome-icon
                 title="Not available for commercial use"
                 v-if="isNonCommercialCollection(collection.value)"
                 class="text-danger non-commercial mr-1"
-                :icon="['fab', 'creative-commons-nc-eu']"/>
+                :icon="['fab', 'creative-commons-nc-eu']"/>-->
               <span> {{ collection.label }}</span>
             </div>
             <div class="pl-3 ml-auto">
