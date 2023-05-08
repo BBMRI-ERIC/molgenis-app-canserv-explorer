@@ -15,7 +15,7 @@
 
       <div
         class="d-flex justify-content-center flex-wrap biobank-cards-container">
-        {{debug("BiobankCardContainer-biobank-card biobanksShown-1")}}
+        <!-- {{debug("BiobankCardContainer-biobank-card biobanksShown-1")}}
         {{debug("BiobankCardContainer-biobank-card biobanksShown-1", JSON.stringify(biobanksShown))}}
         {{debug("BiobankCardContainer-biobank-card biobanksShown-2", biobanksShown.length)}}
         {{debug("BiobankCardContainer-biobank-card biobanksShown-2")}}
@@ -30,6 +30,7 @@
             {{ debug("BiobankCardContainer-biobank-card loop biobanksShown 3") }}
           </ul>
         </div>
+        -->
         <biobank-card v-for="biobank in biobanksShown"
           :key="biobank.id || biobank"
           :biobank="biobank"

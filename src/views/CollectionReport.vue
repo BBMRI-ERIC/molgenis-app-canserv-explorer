@@ -1,9 +1,9 @@
 <template>
   <div class="container mg-collection-report-card pb-4">
-    <script
+    <!-- <script
       v-if="bioschemasJsonld && !isLoading"
       v-text="bioschemasJsonld"
-      type="application/ld+json"/>
+      type="application/ld+json"/> -->
     <loading
       :active="isLoading"
       loader="dots"
@@ -73,7 +73,7 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 import ReportTitle from '../components/report-components/ReportTitle'
 import CollectionReportInfoCard from '../components/cards/CollectionReportInfoCard'
 import { collectionReportInformation } from '../utils/templateMapper'
-import { mapCollectionToBioschemas } from '../utils/bioschemasMapper'
+// import { mapCollectionToBioschemas } from '../utils/bioschemasMapper'
 import ReportCollectionDetails from '../components/report-components/ReportCollectionDetails.vue'
 
 export default {
@@ -101,9 +101,11 @@ export default {
       return splittedUrl[splittedUrl.length - 1]
     },
     bioschemasJsonld () {
-      return this.collection
+      return undefined
+      /* return this.collection
         ? mapCollectionToBioschemas(this.collection)
         : undefined
+      */
     }
   },
   /** needed because if we route back the component is not destroyed but its props are updated for other collection */

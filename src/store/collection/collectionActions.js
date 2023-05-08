@@ -12,8 +12,8 @@ export const COLLECTION_REPORT_ATTRIBUTE_SELECTOR = () => {
   if (collectionRsql.length) {
     rsqlStart += collectionRsql.join(',')
   }
-
-  return `${rsqlStart},biobank(id,name,juridical_person,country,url,contact),head(first_name,last_name,role),contact(title_before_name,first_name,last_name,title_after_name,email,phone),sub_collections(name,id,sub_collections(*),parent_collection,order_of_magnitude,materials(label,uri),data_categories)`
+  // return `${rsqlStart},service_provider(id,name,juridical_person,country,url,contact),head(first_name,last_name,role),contact(title_before_name,first_name,last_name,title_after_name,email,phone),sub_collections(name,id,sub_collections(*),parent_collection,order_of_magnitude,materials(label,uri),data_categories)`
+  return `${rsqlStart},service_provider(id,name,juridical_person,country,url))`
 }
 
 export const collectionActions = {

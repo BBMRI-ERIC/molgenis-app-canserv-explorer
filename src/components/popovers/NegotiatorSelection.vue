@@ -47,7 +47,7 @@
       </div>
     </template>
     <template v-else>
-      <p>You haven't selected any collections yet.</p>
+      <p>You haven't selected any services yet.</p>
     </template>
     <p v-if="isPodium && !collectionsInPodium.length">
       Sorry, none of the samples are currently in Podium.
@@ -58,13 +58,13 @@
         <span class="text-white font-weight-bold d-block">{{
           modalFooterText
         }}</span>
-        <span class="text-white" v-if="selectedNonCommercialCollections > 0">
+        <!-- <span class="text-white" v-if="selectedNonCommercialCollections > 0">
           <font-awesome-icon
             title="Not available for commercial use"
             class="text-white non-commercial mr-1"
             :icon="['fab', 'creative-commons-nc-eu']"/>
           {{ selectedNonCommercialCollections }} are non-commercial only
-        </span>
+        </span> -->
       </div>
       <div class="ml-auto">
         <b-button class="btn btn-dark mr-2" @click="cartVisible = false">{{ uiText['close'] }}</b-button>
@@ -159,8 +159,8 @@ export default {
         ? this.collectionsInPodium.length
         : this.selectedCollections.length
       return this.isPodium
-        ? `${collectionCount} collection(s) present in Podium`
-        : `${collectionCount} collection(s) selected`
+        ? `${collectionCount} services(s) present in Podium`
+        : `${collectionCount} services(s) selected`
     },
     negotiatorButtonText () {
       return this.isPodium ? this.uiText.send_to_podium : this.uiText.send_to_negotiator
