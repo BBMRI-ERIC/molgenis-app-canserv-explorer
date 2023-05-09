@@ -16,7 +16,7 @@ const NETWORK_API_PATH = '/api/v2/canserv_networks'
 /**/
 
 /**  Query Parameters */
-export const COLLECTION_ATTRIBUTE_SELECTOR = 'id,description,name'
+export const COLLECTION_ATTRIBUTE_SELECTOR = 'collections(id,description,name)'
 
 export default {
   ...collectionActions,
@@ -147,6 +147,7 @@ export default {
     const options = {
       body: JSON.stringify(helpers.createNegotiatorQueryBody(state, getters, helpers.getLocationHref()))
     }
+    console.log('SendToNegotiator-1-options', options)
     return api.post('/plugin/directory/export', options)
       .then(helpers.setLocationHref, error => commit('SetError', error))
   }

@@ -83,6 +83,8 @@ const createNegotiatorQueryBody = (state, getters, url) => {
     humanReadable: createHistoryJournal(state),
     nToken: state.nToken
   }
+  console.log('createNegotiatorQueryBody', state.negotiatorCollectionEntityId)
+  console.log('createNegotiatorQueryBody', result)
 
   const collections = state.isPodium ? getters.collectionsInPodium : getters.selectedCollections
   result.rsql = transformToRSQL({ operator: 'AND', operands: createInQuery('id', collections.map(sc => sc.value)) })

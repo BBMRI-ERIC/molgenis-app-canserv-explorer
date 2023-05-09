@@ -12,6 +12,7 @@ export const configurationState = {
   filterFacets: config.filterFacets,
   applicationNotification: config.applicationNotification || '',
   isPodium: config.negotiatorType === 'podium',
-  negotiatorCollectionEntityId: config.negotiatorCollectionEntityId || 'eu_bbmri_eric_collections',
+  // negotiatorCollectionEntityId: config.negotiatorCollectionEntityId || 'eu_bbmri_eric_collections',
+  negotiatorCollectionEntityId: config.negotiatorCollectionEntityId || 'canserv_services',
   menuHeight: config.menuHeight // standard menu height in pixels for use in sticky-position
 }
