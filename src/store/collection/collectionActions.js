@@ -5,13 +5,18 @@ import { COLLECTION_API_PATH } from '../actions'
 import initialCollectionColumns from '../../config/initialCollectionColumns'
 
 export const COLLECTION_REPORT_ATTRIBUTE_SELECTOR = () => {
+  console.log('COLLECTION_REPORT_ATTRIBUTE_SELECTOR-1')
   const collectionRsql = initialCollectionColumns.filter(icc => icc.rsql).map(prop => prop.rsql)
 
+  console.log('COLLECTION_REPORT_ATTRIBUTE_SELECTOR-1.1', collectionRsql)
   let rsqlStart = '*,'
 
+  console.log('COLLECTION_REPORT_ATTRIBUTE_SELECTOR-2')
   if (collectionRsql.length) {
+    console.log('COLLECTION_REPORT_ATTRIBUTE_SELECTOR-2.1')
     rsqlStart += collectionRsql.join(',')
   }
+  console.log('COLLECTION_REPORT_ATTRIBUTE_SELECTOR-3', `${rsqlStart},service_provider(id,name,juridical_person,country,url))`)
   // return `${rsqlStart},service_provider(id,name,juridical_person,country,url,contact),head(first_name,last_name,role),contact(title_before_name,first_name,last_name,title_after_name,email,phone),sub_collections(name,id,sub_collections(*),parent_collection,order_of_magnitude,materials(label,uri),data_categories)`
   return `${rsqlStart},service_provider(id,name,juridical_person,country,url))`
 }
@@ -52,15 +57,19 @@ export const collectionActions = {
       })
   },
   GetCollectionReport ({ commit }, collectionId) {
-    console.log('GetCollectionReport')
+    console.log('GetCollectionReport-1')
     commit('SetLoading', true)
+    console.log('GetCollectionReport-1.1', `${COLLECTION_API_PATH}/${collectionId}?attrs=${COLLECTION_REPORT_ATTRIBUTE_SELECTOR()}`)
     api.get(`${COLLECTION_API_PATH}/${collectionId}?attrs=${COLLECTION_REPORT_ATTRIBUTE_SELECTOR()}`).then(response => {
+      console.log('GetCollectionReport-2')
       commit('SetCollectionReport', response)
       commit('SetLoading', false)
     }, error => {
+      console.log('GetCollectionReport-3')
       commit('SetError', error)
       commit('SetLoading', false)
     })
+    console.log('GetCollectionReport-4')
   },
   AddCollectionsToSelection ({ commit, getters }, { collections, bookmark }) {
     console.log('AddCollectionsToSelection')

@@ -52,6 +52,7 @@
           </div>
           <div class="p-2 pt-1 biobank-section" :style="cardContainerHeight">
             <small>
+              {{debug("BiobankCard-view-generator:viewmodel:biobankcardViewmodel", biobank.id, biobank.name)}}
               <view-generator :viewmodel="biobankcardViewmodel" />
               <router-link
                 :to="'/biobank/' + biobank.id"
@@ -209,9 +210,13 @@ export default {
     },
     getCollectionDetails,
     collectionViewmodel (collectiondetails) {
+      console.log('BiobankCard-collectionViewmodel-1', collectiondetails)
       const attributes = []
+      console.log('BiobankCard-collectionViewmodel-2', this.collectionColumns)
       for (const item of this.collectionColumns) {
+        console.log('BiobankCard-collectionViewmodel-2.1', item)
         if (item.showOnBiobankCard) {
+          console.log('BiobankCard-collectionViewmodel-2.2 showOnBiobankCar', item.showOnBiobankCard)
           attributes.push(
             collectiondetails.viewmodel.attributes.find(
               vm => vm.label === item.label
@@ -219,6 +224,7 @@ export default {
           )
         }
       }
+      console.log('BiobankCard-collectionViewmodel-3', attributes)
       return { attributes }
     }
   },
@@ -258,10 +264,14 @@ export default {
       return `height: ${height}rem;max-height: ${height}rem;`
     },
     biobankcardViewmodel () {
+      console.log('biobankcardViewmodel-1')
       // check if biobank is still loading
       if (this.loading) return {}
 
+      console.log('biobankcardViewmodel-2')
+
       const { viewmodel } = getBiobankDetails(this.biobank)
+      console.log('biobankcardViewmodel-3', viewmodel)
       const attributes = []
 
       for (const item of this.biobankColumns) {
@@ -271,12 +281,15 @@ export default {
           )
         }
       }
+      console.log('biobankcardViewmodel-4', attributes)
       return { attributes }
     },
     hasBiobankQuality () {
-      return this.biobankcardViewmodel.attributes.some(
+      return false
+      /*       return this.biobankcardViewmodel.attributes.some(
         attr => attr.type === 'quality' && attr.value && attr.value.length
       )
+      */
     },
     /** broken */
     biobankInSelection () {
