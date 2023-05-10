@@ -117,7 +117,7 @@
                 multi></collection-selector>
             </div>
             <div class="pl-2" v-if="!numberOfCollections">
-              This biobank has no collections yet.
+              This Service Provider is not offering any services yet.
             </div>
             {{debug("BiobankCard-biobank collection details - loading")}}
             {{debug(JSON.stringify(biobank.collectionDetails))}}
