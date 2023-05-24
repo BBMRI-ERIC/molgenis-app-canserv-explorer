@@ -128,7 +128,7 @@
               <div v-if="showCollections" class="mb-2">
                 <div class="pl-2 py-2 d-flex">
                   <router-link
-                    :to="'/service/' + collectionDetail.id"
+                    :to="'/collection/' + collectionDetail.id"
                     title="Service details"
                     class="text-dark">
                     <span

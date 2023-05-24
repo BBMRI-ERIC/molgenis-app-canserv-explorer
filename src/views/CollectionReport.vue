@@ -24,9 +24,9 @@
               </li>
               <li class="breadcrumb-item">
                 <router-link
-                  :to="'/biobank/' + collection.biobank.id"
-                  :title="'Go to biobank ' + collection.biobank.name">
-                  {{ collection.biobank.name }}
+                  :to="'/biobank/' + collection.service_provider.id"
+                  :title="'Go to biobank ' + collection.service_provider.name">
+                  {{ collection.service_provider.name }}
                 </router-link>
               </li>
               <li class="breadcrumb-item" v-if="info.parentCollection">
@@ -56,8 +56,10 @@
               </div>
 
               <!-- Right side card -->
+              <!-- removed for this view
               <collection-report-info-card
                 :info="info"></collection-report-info-card>
+              -->
             </div>
           </div>
         </div>
