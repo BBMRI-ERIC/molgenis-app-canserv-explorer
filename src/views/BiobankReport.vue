@@ -51,6 +51,7 @@
                 </div>
               </div>
               <!-- Right side card -->
+              <!-- removed for this view
               <div class="col-md-4">
                 <div class="card">
                   <div class="card-body">
@@ -76,7 +77,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>

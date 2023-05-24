@@ -1,4 +1,4 @@
-import utils from '../../utils'
+// import utils from '../../utils' - commented, only used in GetBiobankReport ${utils.qualityAttributeSelector('bio')} below
 import api from '@molgenis/molgenis-api-client'
 import { encodeRsqlValue, transformToRSQL } from '@molgenis/rsql'
 import { COLLECTION_ATTRIBUTE_SELECTOR } from '../actions'
@@ -53,7 +53,8 @@ export const biobankActions = {
       return
     }
     commit('SetLoading', true)
-    api.get(`${BIOBANK_API_PATH}/${biobankId}?attrs=${COLLECTION_ATTRIBUTE_SELECTOR},${utils.qualityAttributeSelector('bio')},contact(*),head(first_name,last_name,role),*`).then(response => {
+    // api.get(`${BIOBANK_API_PATH}/${biobankId}?attrs=${COLLECTION_ATTRIBUTE_SELECTOR},${utils.qualityAttributeSelector('bio')},contact(*),head(first_name,last_name,role),*`).then(response => {
+    api.get(`${BIOBANK_API_PATH}/${biobankId}?attrs=${COLLECTION_ATTRIBUTE_SELECTOR},*`).then(response => {
       commit('SetBiobankReport', response)
       commit('SetLoading', false)
     }, error => {

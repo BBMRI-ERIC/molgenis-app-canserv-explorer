@@ -20,6 +20,9 @@ module.exports = {
     "vue/html-closing-bracket-newline": ["error", {
       "singleline": "never",
       "multiline": "never"
+    }],
+    "vue/no-unused-components": ["error", {
+      "ignoreWhenBindingPresent": true
     }]
   },
 

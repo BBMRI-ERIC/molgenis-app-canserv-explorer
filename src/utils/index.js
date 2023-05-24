@@ -3,7 +3,8 @@ import { INITIAL_STATE } from '../store/state'
  * Generate the attribute selector for quality parameters (can be either for collection or for biobank)
  * */
 const qualityAttributeSelector = (type) => {
-  return `quality(id,standards(*),assess_level_${type}(*),certification_number,certification_image_link,certification_report,label)`
+//  return `quality(id,standards(*),assess_level_${type}(*),certification_number,certification_image_link,certification_report,label)`
+  return ''
 }
 
 const hasAggregateCode = /[A-Z]{1}\d{1,2}\.?\d+?-[A-Z]{1}\d{1,2}\.?\d+?$/gm
