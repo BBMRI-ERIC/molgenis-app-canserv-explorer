@@ -8,7 +8,7 @@ const filterDefinitions = [
     columnName: 'diagnosis_available',
     humanReadableString: 'Disease type(s):',
     showFacet: true
-  }, */
+  },
   {
     name: 'type',
     label: 'Field',
@@ -49,6 +49,8 @@ const filterDefinitions = [
     showFacet: true,
     adaptive: true
   },
+  */
+  /* will stay removed:
   {
     name: 'biobank_capabilities',
     label: 'Services',
@@ -83,6 +85,7 @@ const filterDefinitions = [
     removeOptions: ['other'],
     showFacet: false
   },
+  */
   {
     name: 'search',
     label: 'Search',
