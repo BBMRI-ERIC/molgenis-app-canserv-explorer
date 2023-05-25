@@ -73,7 +73,7 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import ReportTitle from '../components/report-components/ReportTitle'
-import CollectionReportInfoCard from '../components/cards/CollectionReportInfoCard'
+// import CollectionReportInfoCard from '../components/cards/CollectionReportInfoCard'
 import { collectionReportInformation } from '../utils/templateMapper'
 // import { mapCollectionToBioschemas } from '../utils/bioschemasMapper'
 import ReportCollectionDetails from '../components/report-components/ReportCollectionDetails.vue'
@@ -82,7 +82,7 @@ export default {
   name: 'CollectionReport',
   components: {
     ReportTitle,
-    CollectionReportInfoCard,
+    // CollectionReportInfoCard,
     Loading,
     ReportCollectionDetails
   },

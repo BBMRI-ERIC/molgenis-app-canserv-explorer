@@ -22,7 +22,7 @@ module.exports = {
       "multiline": "never"
     }],
     "vue/no-unused-components": ["error", {
-      "ignoreWhenBindingPresent": false
+      "ignoreWhenBindingPresent": true
     }]
   },
 
