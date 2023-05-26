@@ -38,6 +38,7 @@ const filterDefinitions = [
     showFacet: true,
     adaptive: true
   },
+*/
   {
     name: 'country',
     label: 'Countries',
@@ -49,7 +50,6 @@ const filterDefinitions = [
     showFacet: true,
     adaptive: true
   },
-  */
   /* will stay removed:
   {
     name: 'biobank_capabilities',
