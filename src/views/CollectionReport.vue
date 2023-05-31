@@ -4,6 +4,7 @@
       v-if="bioschemasJsonld && !isLoading"
       v-text="bioschemasJsonld"
       type="application/ld+json"/> -->
+    {{debug("CollectionReport-Display-1")}}
     <loading
       :active="isLoading"
       loader="dots"
@@ -56,10 +57,9 @@
               </div>
 
               <!-- Right side card -->
-              <!-- removed for this view
+              <!-- added detail information on service RI for this view instead of contact information -->
               <collection-report-info-card
                 :info="info"></collection-report-info-card>
-              -->
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import ReportTitle from '../components/report-components/ReportTitle'
-// import CollectionReportInfoCard from '../components/cards/CollectionReportInfoCard'
+import CollectionReportInfoCard from '../components/cards/CollectionReportInfoCard'
 import { collectionReportInformation } from '../utils/templateMapper'
 // import { mapCollectionToBioschemas } from '../utils/bioschemasMapper'
 import ReportCollectionDetails from '../components/report-components/ReportCollectionDetails.vue'
@@ -82,12 +82,15 @@ export default {
   name: 'CollectionReport',
   components: {
     ReportTitle,
-    // CollectionReportInfoCard,
+    CollectionReportInfoCard,
     Loading,
     ReportCollectionDetails
   },
   methods: {
     ...mapActions(['GetCollectionReport']),
+    debug (...args) {
+      console.log(...args)
+    },
     back () {
       this.$router.go(-1)
     }
@@ -96,6 +99,7 @@ export default {
     ...mapState({ collection: 'collectionReport', isLoading: 'isLoading' }),
     ...mapGetters(['uiText']),
     info () {
+      console.log('CollectionReport-Display-2: info', this.collection)
       return collectionReportInformation(this.collection)
     },
     collectionId () {

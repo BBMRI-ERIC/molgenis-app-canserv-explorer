@@ -220,11 +220,28 @@ export const collectionReportInformation = collection => {
 
   collectionReport.head = getNameOfHead(collection.head) || undefined
 
+  collectionReport.unit_of_access = collection.unit_of_access || undefined
+
   if (collection.contact) {
     collectionReport.contact = {
       name: getName(collection.contact),
       email: collection.contact.email ? collection.contact.email : undefined,
       phone: collection.contact.phone ? collection.contact.phone : undefined
+    }
+  }
+
+  if (collection.service_provider) {
+    console.log('collectionReportInformation-1:', collection.service_provider.id, collection.service_provider.name, collection.service_provider.name_of_institue, collection.service_provider.url, collection.service_provider.country)
+    collectionReport.service_provider = {
+      id: collection.service_provider.id,
+      name: collection.service_provider.name,
+      name_of_institue: collection.service_provider.name_of_institue,
+      url: mapUrl(collection.service_provider.url),
+      timezone: collection.service_provider.timezone,
+      country: collection.service_provider.country,
+      acronym: collection.service_provider.acronym,
+      juridical_person: collection.service_provider.juridical_person,
+      description: collection.service_provider.description
     }
   }
 

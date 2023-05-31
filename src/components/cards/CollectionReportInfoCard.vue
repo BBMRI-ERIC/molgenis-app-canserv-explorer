@@ -3,15 +3,29 @@
     <div class="card">
       <div class="card-body">
         <div class="card-text">
-          <template v-if="info.contact">
-            <h5>Contact Information</h5>
+          {{debug("CollectionReportInfoCard-Display-1:", info)}}
+          <template v-if="info.service_provider.name">
+            <!--<h5>Service Provider</h5>-->
             <ul class="right-content-list">
-              <template v-if="info.head">
+              <template v-if="info.service_provider.name">
                 <li>
-                  <span class="font-weight-bold mr-1">Head/PI:</span>
-                  <span>{{ info.head }}</span>
+                  <span class="font-weight-bold mr-1">Service Provider:</span>
+                  <span>{{ info.service_provider.name }}</span>
                 </li>
               </template>
+              <li v-if="info.service_provider.country">
+                <span class="font-weight-bold mr-1">Country:</span>
+                <span>{{ info.service_provider.country }}</span>
+              </li>
+              <li v-if="info.service_provider.timezone">
+                <span class="font-weight-bold mr-1">Timezone:</span>
+                <span>{{ info.service_provider.timezone }}</span>
+              </li>
+              <li v-if="info.service_provider.name_of_institue">
+                <span class="font-weight-bold mr-1">Institute:</span>
+                <span>{{ info.service_provider.name_of_institue }}</span>
+              </li>
+              <!--
               <li v-if="info.contact.name">
                 <span class="font-weight-bold mr-1">Contact:</span>
                 <span>{{ info.contact.name }}</span>
@@ -27,6 +41,7 @@
                     <span> {{ info.contact.phone }}</span></a>
                 </div>
               </li>
+              -->
             </ul>
           </template>
           <template v-if="info.biobank">
@@ -134,6 +149,11 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'CollectionReportInfoCard',
+  methods: {
+    debug (...args) {
+      console.log(...args)
+    }
+  },
   props: {
     info: {
       type: Object,

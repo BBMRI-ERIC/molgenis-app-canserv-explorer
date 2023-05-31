@@ -16,9 +16,9 @@ export const COLLECTION_REPORT_ATTRIBUTE_SELECTOR = () => {
     console.log('COLLECTION_REPORT_ATTRIBUTE_SELECTOR-2.1')
     rsqlStart += collectionRsql.join(',')
   }
-  console.log('COLLECTION_REPORT_ATTRIBUTE_SELECTOR-3', `${rsqlStart},service_provider(id,name,juridical_person,country,description,url))`)
+  console.log('COLLECTION_REPORT_ATTRIBUTE_SELECTOR-3', `${rsqlStart},service_provider(id,name,name_of_institue,acronym,timezone,juridical_person,country,description,url))`)
   // return `${rsqlStart},service_provider(id,name,juridical_person,country,url,contact),head(first_name,last_name,role),contact(title_before_name,first_name,last_name,title_after_name,email,phone),sub_collections(name,id,sub_collections(*),parent_collection,order_of_magnitude,materials(label,uri),data_categories)`
-  return `${rsqlStart},service_provider(id,name,juridical_person,country,url))`
+  return `${rsqlStart},service_provider(id,name,name_of_institue,acronym,timezone,juridical_person,country,description,url))`
 }
 
 export const collectionActions = {
