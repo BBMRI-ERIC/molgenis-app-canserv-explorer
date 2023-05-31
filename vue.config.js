@@ -32,7 +32,7 @@ const htmlTemplate = () => {
   if (process.env.NODE_ENV === 'test') return 'public/preview.html'
 }
 
-const PROXY_TARGET = 'https://jelmer.gcc.rug.nl'
+const PROXY_TARGET = 'https://directory.canserv.eu'
 
 const apiDevServerProxyConf = {
   target: PROXY_TARGET,

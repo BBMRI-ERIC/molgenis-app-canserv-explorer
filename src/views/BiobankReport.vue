@@ -91,7 +91,7 @@ import { mapState, mapActions, mapGetters } from 'vuex'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import ReportTitle from '../components/report-components/ReportTitle.vue'
-import ReportDetailsList from '../components/report-components/ReportDetailsList.vue'
+// import ReportDetailsList from '../components/report-components/ReportDetailsList.vue'
 import CollectionTitle from '../components/report-components/CollectionTitle.vue'
 import ViewGenerator from '../components/generators/ViewGenerator.vue'
 import { sortCollectionsByName } from '../utils/sorting'
@@ -110,7 +110,7 @@ export default {
   name: 'biobank-report-card',
   components: {
     ReportTitle,
-    ReportDetailsList,
+    // ReportDetailsList,
     Loading,
     ViewGenerator,
     CollectionTitle

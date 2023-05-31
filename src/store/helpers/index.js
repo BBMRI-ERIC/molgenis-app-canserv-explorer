@@ -21,7 +21,7 @@ export const createRSQLQuery = (state) => transformToRSQL({
     /*     diagnosisAvailableQuery(state.filters.selections.diagnosis_available, 'diagnosis_available', state.filters.satisfyAll.includes('diagnosis_available')),
     createSearchInputQuery(state, ['name', 'id', 'acronym', 'diagnosis_available.id', 'diagnosis_available.code', 'diagnosis_available.label', 'diagnosis_available.ontology', 'materials.id', 'materials.label', 'biobank.name', 'biobank.id', 'biobank.acronym']),
     createRsqlQueriesFromState(state) */
-    createSearchInputQuery(state, ['name', 'id', 'acronym']),
+    createSearchInputQuery(state, ['name', 'id', 'acronym', 'description']),
     createRsqlQueriesFromState(state)])
 })
 
@@ -56,7 +56,7 @@ function createRsqlQueriesFromState (state) {
   const queries = []
 
   for (const facet of state.filterFacets) {
-    if (activeFilterSelection.includes(facet.name) && facet.applyTo.includes('eu_bbmri_eric_collections')) {
+    if (activeFilterSelection.includes(facet.name) && facet.applyTo.includes('canserv_services')) {
       queries.push(createQuery(state.filters.selections[facet.name], facet.columnName, state.filters.satisfyAll.includes(facet.name)))
     }
   }
@@ -65,15 +65,25 @@ function createRsqlQueriesFromState (state) {
 }
 
 // TODO: refactor createQuery for canSERV
-export const createBiobankRSQLQuery = (state) => transformToRSQL({
-  operator: 'AND',
-  operands: flatten([
-    createInQuery('country', state.filters.selections.country || []),
-    createRsqlQueriesFromState(state)
-    /* createInQuery('id', state.biobankIdsWithSelectedQuality) */
-    /*    createQuery(state.filters.selections.biobank_capabilities, 'capabilities', state.filters.satisfyAll.includes('biobank_capabilities')) */
-  ])
-})
+export const createBiobankRSQLQuery = (state) => {
+  console.log('createBiobankRSQLQuery-1')
+  console.log('createBiobankRSQLQuery-1.1', state.filters.selections || [])
+  console.log('createBiobankRSQLQuery-1.2', state.filters.selections.country || [])
+  console.log('createBiobankRSQLQuery-1.3', state.filters.selections.category || [])
+  // console.log('createBiobankRSQLQuery-1.4', state.filters.selections.type || [])
+  transformToRSQL({
+    operator: 'AND',
+    operands: flatten([
+      createInQuery('country', state.filters.selections.country || []),
+      // TODO: if applicable on collections to on both:
+      createInQuery('category', state.filters.selections.category || []),
+      createRsqlQueriesFromState(state)
+      /* createInQuery('id', state.biobankIdsWithSelectedQuality) */
+      /*    createQuery(state.filters.selections.biobank_capabilities, 'capabilities', state.filters.satisfyAll.includes('biobank_capabilities')) */
+    ])
+  })
+  console.log('createBiobankRSQLQuery-2')
+}
 
 const createNegotiatorQueryBody = (state, getters, url) => {
   const result = {

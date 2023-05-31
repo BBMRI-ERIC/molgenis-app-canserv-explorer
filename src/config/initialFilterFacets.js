@@ -19,26 +19,30 @@ const filterDefinitions = [
     showFacet: true,
     adaptive: true
   },
+  */
+  {
+    name: 'category',
+    label: 'Service category',
+    tableName: 'canserv_service_categories',
+    columnName: 'category',
+    humanReadableString: 'Service categories:',
+    applyTo: ['canserv_services', 'eu_bbmri_eric_collections', 'eu_bbmri_eric_biobanks'],
+    showFacet: true,
+    adaptive: true
+  },
   {
     name: 'type',
     label: 'Service type',
     tableName: 'canserv_service_types',
     columnName: 'type',
     humanReadableString: 'Service type(s):',
+    applyTo: ['canserv_services', 'eu_bbmri_eric_collections', 'eu_bbmri_eric_biobanks'],
     removeOptions: ['other'],
     showFacet: true,
     adaptive: true
   },
-  {
-    name: 'category',
-    label: 'Service category',
-    tableName: 'canserv_service_categories',
-    columnName: 'category',
-    humanReadableString: 'Service categoris:',
-    showFacet: true,
-    adaptive: true
-  },
-*/
+
+  /* removed as filters now only work for a single facet
   {
     name: 'country',
     label: 'Countries',
@@ -50,6 +54,7 @@ const filterDefinitions = [
     showFacet: true,
     adaptive: true
   },
+  */
   /* will stay removed:
   {
     name: 'biobank_capabilities',
