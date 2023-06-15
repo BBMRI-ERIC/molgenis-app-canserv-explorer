@@ -5,10 +5,11 @@
       v-if="isTopLevelCollection"
       :collectionData="collection"/>
 
-    <report-description
+    <!-- removed because duplicated on the service/collection detail view-->
+    <!--<report-description
       :description="collection.description"
       :maxLength="500"></report-description>
-
+    -->
     <!-- collection information -->
     <view-generator :viewmodel="collectionModel.viewmodel" />
   </div>
@@ -18,7 +19,7 @@
 import { mapState } from 'vuex'
 import { getCollectionDetails } from '../../utils/templateMapper'
 import CollectionSelector from '../buttons/CollectionSelector.vue'
-import ReportDescription from '../report-components/ReportDescription.vue'
+// import ReportDescription from '../report-components/ReportDescription.vue'
 import ViewGenerator from '../generators/ViewGenerator.vue'
 
 export default {
@@ -31,7 +32,7 @@ export default {
   },
   components: {
     CollectionSelector,
-    ReportDescription,
+    // ReportDescription,
     ViewGenerator
   },
   computed: {
