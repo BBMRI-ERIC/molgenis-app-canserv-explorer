@@ -122,12 +122,12 @@
           </b-dropdown>
         </span>
 
-        <button
+        <!--<button
           @click="showAllFilters = !showAllFilters"
           class="btn btn-link text-info">
           <span v-if="showAllFilters">Fewer filters</span>
           <span v-else>More filters</span>
-        </button>
+        </button>-->
       </div>
     </div>
     <negotiator-selection v-model="showCart" />
