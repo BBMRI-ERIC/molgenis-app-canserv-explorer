@@ -21,7 +21,7 @@ export const createRSQLQuery = (state) => transformToRSQL({
     /*     diagnosisAvailableQuery(state.filters.selections.diagnosis_available, 'diagnosis_available', state.filters.satisfyAll.includes('diagnosis_available')),
     createSearchInputQuery(state, ['name', 'id', 'acronym', 'diagnosis_available.id', 'diagnosis_available.code', 'diagnosis_available.label', 'diagnosis_available.ontology', 'materials.id', 'materials.label', 'biobank.name', 'biobank.id', 'biobank.acronym']),
     createRsqlQueriesFromState(state) */
-    createSearchInputQuery(state, ['name', 'id', 'acronym', 'description']),
+    createSearchInputQuery(state, ['name', 'id', 'acronym', 'description', 'keywords']),
     createRsqlQueriesFromState(state)])
 })
 
