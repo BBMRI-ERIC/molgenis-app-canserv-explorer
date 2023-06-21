@@ -1,7 +1,8 @@
 <template>
   <div
     @click="$root.$emit('bv::hide::popover')"
-    :class="{ 'molgenis-negative-top-margin': removeFreemarkerMargin }">
+    :class="{ 'molgenis-negative-top-margin': removeFreemarkerMargin }"
+    class="app-layout">
     <div
       v-if="applicationNotification"
       class="alert alert-warning"
@@ -52,9 +53,7 @@ export default {
   },
   methods: {
     ...mapMutations(['MapQueryToState', 'ConfigureFilters', 'SetNotification']),
-    ...mapActions([
-      'GetApplicationContext'
-    ])
+    ...mapActions(['GetApplicationContext', 'GetQualityStandardInformation'])
   },
   watch: {
     $route () {
@@ -75,12 +74,18 @@ export default {
   beforeMount () {
     this.ConfigureFilters()
     this.MapQueryToState()
+    this.GetQualityStandardInformation()
     this.GetApplicationContext()
   }
 }
 </script>
 
 <style>
+.app-layout {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .mg-page-content {
   padding-top: 0 !important;
 }

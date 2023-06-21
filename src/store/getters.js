@@ -1,4 +1,3 @@
-/* import { createRSQLQuery, createBiobankRSQLQuery, filterCollectionTree, getHumanReadableString } from './helpers' */
 import { createRSQLQuery, createBiobankRSQLQuery, filterCollectionTree, getHumanReadableString } from './helpers'
 import { groupCollectionsByBiobankId } from '../utils/grouping'
 import { sortCollectionsByName } from '../utils/sorting'

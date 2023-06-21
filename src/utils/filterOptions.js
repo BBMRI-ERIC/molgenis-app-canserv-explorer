@@ -43,6 +43,9 @@ function checkForBookmarkFilter (filterName, filterOptions) {
         cache({ filterName, filterOptions: options })
       }
     }
+  } else {
+    /** we can just add the newly searched */
+    store.commit('SetFilterOptionDictionary', { filterName, filterOptions })
   }
 }
 
@@ -86,20 +89,16 @@ export const diagnosisAvailableFilterOptions = (tableName, filterName) => {
       } else {
         url = `${url}?q=${encodeRsqlValue(createDiagnosisLabelQuery(query))}`
       }
+    } else {
+      url += '?q=id=like=icd'
     }
 
     api.get(url).then(response => {
       const filterOptions = response.items.map((obj) => { return { text: `[ ${obj.code} ] - ${obj.label || obj.name}`, value: obj.id } })
+
       checkForBookmarkFilter(filterName, filterOptions)
+      cache({ filterName, filterOptions })
       resolve(filterOptions)
     })
-  })
-}
-
-export const collaborationTypeFilterOptions = () => {
-  const filterOptions = [{ text: 'Commercial use', value: 'true' }, { text: 'Non-commercial use only', value: 'false' }]
-
-  return () => new Promise((resolve) => {
-    resolve(filterOptions)
   })
 }

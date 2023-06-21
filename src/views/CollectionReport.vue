@@ -5,6 +5,12 @@
       v-text="bioschemasJsonld"
       type="application/ld+json"/> -->
     {{debug("CollectionReport-Display-1")}}
+    <b-alert
+      v-if="collection && collection.service_provider.withdrawn"
+      show
+      variant="warning">
+      {{ uiText["collection_withdrawn"] }}
+    </b-alert>
     <loading
       :active="isLoading"
       loader="dots"
@@ -13,13 +19,11 @@
       background-color="var(--light)"></loading>
     <div class="container-fluid">
       <div class="row">
-        <div class="col my-3 shadow-sm">
+        <div class="col my-3 shadow-sm d-flex p-2 align-items-center">
           <nav aria-label="breadcrumb" v-if="collection">
             <ol class="breadcrumb my-1">
               <li class="breadcrumb-item">
-                <router-link
-                  to="/"
-                  title="Back to biobank explorer">
+                <router-link to="/catalogue" title="Back to CanSERV service explorer">
                   {{ uiText["home"] }}
                 </router-link>
               </li>
@@ -33,7 +37,9 @@
               <li class="breadcrumb-item" v-if="info.parentCollection">
                 <router-link
                   :to="'/collection/' + info.parentCollection.id"
-                  :title="'Go to parent collection ' + info.parentCollection.name">
+                  :title="
+                    'Go to parent collection ' + info.parentCollection.name
+                  ">
                   {{ info.parentCollection.name }}
                 </router-link>
               </li>
@@ -42,10 +48,15 @@
               </li>
             </ol>
           </nav>
+          <check-out
+            v-if="collection"
+            class="ml-auto"
+            :bookmark="false"
+            :disabled="collection.service_provider.withdrawn"/>
         </div>
       </div>
 
-      <div class="row" v-if="this.collection && !this.isLoading">
+      <div class="row" v-if="collection && !isLoading">
         <div class="col">
           <report-title type="Service" :name="collection.name">
           </report-title>
@@ -53,7 +64,9 @@
           <div class="container p-0">
             <div class="row">
               <div class="col-md-8">
-                <report-collection-details :collection="collection" />
+                <report-collection-details
+                  v-if="collection"
+                  :collection="collection"/>
               </div>
 
               <!-- Right side card -->
@@ -61,6 +74,14 @@
               <collection-report-info-card
                 :info="info"></collection-report-info-card>
             </div>
+            <!-- Remove Facts for now -->
+            <!--
+            <div
+              class="row"
+              v-if="factsData && Object.keys(factsData).length > 0">
+              <facts-table :attribute="factsData"></facts-table>
+            </div>
+            -->
           </div>
         </div>
       </div>
@@ -77,6 +98,8 @@ import CollectionReportInfoCard from '../components/cards/CollectionReportInfoCa
 import { collectionReportInformation } from '../utils/templateMapper'
 // import { mapCollectionToBioschemas } from '../utils/bioschemasMapper'
 import ReportCollectionDetails from '../components/report-components/ReportCollectionDetails.vue'
+// import FactsTable from '../components/generators/custom-view-components/FactsTable.vue'
+import CheckOut from '../components/checkout/CheckOut.vue'
 
 export default {
   name: 'CollectionReport',
@@ -84,15 +107,17 @@ export default {
     ReportTitle,
     CollectionReportInfoCard,
     Loading,
-    ReportCollectionDetails
+    ReportCollectionDetails,
+    // FactsTable,
+    CheckOut
   },
   methods: {
     ...mapActions(['GetCollectionReport']),
-    debug (...args) {
-      console.log(...args)
-    },
     back () {
       this.$router.go(-1)
+    },
+    debug (...args) {
+      console.log(...args)
     }
   },
   computed: {
@@ -112,6 +137,10 @@ export default {
         ? mapCollectionToBioschemas(this.collection)
         : undefined
       */
+    },
+    factsData () {
+      // TODO rework this so that facts are stand-alone, this is a workaround because @ReportCollectionDetails
+      return { value: this.collection.facts }
     }
   },
   /** needed because if we route back the component is not destroyed but its props are updated for other collection */

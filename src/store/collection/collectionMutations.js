@@ -16,6 +16,7 @@ export const collectionMutations = {
       isSubcollection: item.data.parent_collection !== undefined,
       parentCollection: item.data.parent_collection !== undefined,
       commercialUse: item.data.collaboration_commercial !== undefined
+
     }))
 
     const nonCommercialUseCollections = []

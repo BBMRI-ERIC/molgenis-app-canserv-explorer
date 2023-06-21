@@ -17,6 +17,9 @@ const NETWORK_API_PATH = '/api/v2/canserv_networks'
 
 /**  Query Parameters */
 export const COLLECTION_ATTRIBUTE_SELECTOR = 'collections(id,description,name,service_field)'
+const BIOBANK_QUALITY_STANDARDS = '/api/v2/eu_bbmri_eric_ops_standards'
+const COLLECTION_QUALITY_STANDARDS = '/api/v2/eu_bbmri_eric_lab_standards'
+/**/
 
 export default {
   ...collectionActions,
@@ -76,7 +79,7 @@ export default {
       return
     }
 
-    let url = '/api/data/canserv_services?size=1&filter=id&q='
+    let url = '/api/data/eu_bbmri_eric_collections?size=1&filter=id&q='
     for (const activeFilterName in activeFilterNames) {
       const name = activeFilterNames[activeFilterName]
       if (state.filters.satisfyAll.includes(name)) {
@@ -138,6 +141,14 @@ export default {
     }
     commit('SetUpdateFilter', { filterName, reducedFilterOptions, lastBaseQuery })
   },
+  async GetQualityStandardInformation ({ commit }) {
+    const biobankQualityInfo = api.get(`${BIOBANK_QUALITY_STANDARDS}?num=10000&attrs=label,description`)
+    const collectionQualityInfo = api.get(`${COLLECTION_QUALITY_STANDARDS}?num=10000&attrs=label,description`)
+    const response = await Promise.all([biobankQualityInfo, collectionQualityInfo])
+
+    commit('SetQualityStandardDictionary', response)
+  },
+
   /**
    * Transform the state into a NegotiatorQuery object.
    * Calls the DirectoryController method '/export' which answers with a URL

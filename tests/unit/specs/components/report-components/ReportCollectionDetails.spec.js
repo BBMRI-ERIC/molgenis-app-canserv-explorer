@@ -40,58 +40,58 @@ const expected = {
     _href: '/api/v2/eu_bbmri_eric_biobank_size/3',
     size: '777'
   },
-/*   sub_collections: [
-    {
-      data_categories: [
-        {
-          id: 'BIOLOGICAL_SAMPLES',
-          label: 'Biological samples'
-        }
-      ],
-      id: '1',
-      materials: [
-        {
-          id: 'OTHER',
-          label: 'Other'
-        }
-      ],
-      name: 'Test 1',
-      order_of_magnitude: {
-        id: 4,
-        size: '10.000 - 100.000'
+  /*   sub_collections: [
+      {
+        data_categories: [
+          {
+            id: 'BIOLOGICAL_SAMPLES',
+            label: 'Biological samples'
+          }
+        ],
+        id: '1',
+        materials: [
+          {
+            id: 'OTHER',
+            label: 'Other'
+          }
+        ],
+        name: 'Test 1',
+        order_of_magnitude: {
+          id: 4,
+          size: '10.000 - 100.000'
+        },
+        parent_collection: {
+          id: 'c-001',
+          name: 'beautiful collection'
+        },
+        sub_collections: []
       },
-      parent_collection: {
-        id: 'c-001',
-        name: 'beautiful collection'
-      },
-      sub_collections: []
-    }, */
-    {
-      data_categories: [
-        {
-          id: 'BIOLOGICAL_SAMPLES',
-          label: 'Biological samples'
-        }
-      ],
-      id: '2',
-      materials: [
-        {
-          id: 'OTHER',
-          label: 'Other'
-        }
-      ],
-      name: 'Test 2',
-      order_of_magnitude: {
-        id: 4,
-        size: '10.000 - 100.000'
-      },
-      parent_collection: {
-        id: 'c-001',
-        name: 'beautiful collection'
-      },
-      sub_collections: []
-    }
-  ],
+      {
+        data_categories: [
+          {
+            id: 'BIOLOGICAL_SAMPLES',
+            label: 'Biological samples'
+          }
+        ],
+        id: '2',
+        materials: [
+          {
+            id: 'OTHER',
+            label: 'Other'
+          }
+        ],
+        name: 'Test 2',
+        order_of_magnitude: {
+          id: 4,
+          size: '10.000 - 100.000'
+        },
+        parent_collection: {
+          id: 'c-001',
+          name: 'beautiful collection'
+        },
+        sub_collections: []
+      }
+    ], */
   viewmodel: {
     attributes: [
       {
