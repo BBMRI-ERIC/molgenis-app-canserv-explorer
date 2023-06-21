@@ -46,6 +46,62 @@
                 </info-popover>
               </sup>
             </router-link>
+            <div>
+              <!-- add icons for service field for Service Provider View - back of card -->
+              <!--
+              {{debug("FrontbiobankCollectionServiceFields:", biobankCollectionServiceFields(biobank.collectionDetails))}}
+              <span v-for="service_fields in biobankCollectionServiceFields(biobank.collectionDetails)" :key="service_fields">
+                <span v-if="service_fields == '001_disease_models'">
+                  <img src="@/assets/service_field_icons/001_disease_models.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '002_advanced_technologies_for_personalised_oncology'">
+                        <img src="@/assets/service_field_icons/002_advanced_technologies_for_personalised_oncology.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '003_biomarkerResearch_development_and_validation'">
+                  <img src="@/assets/service_field_icons/003_biomarkerResearch_development_and_validation.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '004_new_therapeutic_solutions'">
+                  <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '005_accelerated_translation_into_personalised_oncology_clinical_practice'">
+                  <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '006_open_digital_research_services'">
+                  <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '010_training'">
+                  <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+              </span>
+              -->
+            <!-- {{debug("biobankCollectionServiceField:", biobankCollectionServiceField(biobank.collectionDetails))}} -->
+            <!-- <span v-for="(collectionDetail) of biobank.collectionDetails" :key="collectionDetail.id">
+              <span v-for="service_fields in collectionDetail.service_field" :key="service_fields.id">-->
+            {{debug("biobankCollectionServiceFields:", biobankCollectionServiceFields(biobank.collectionDetails))}}
+            <span v-for="service_fields in biobankCollectionServiceFields(biobank.collectionDetails)" :key="service_fields">
+                <span v-if="service_fields == '001_disease_models'">
+                  <img src="@/assets/service_field_icons/001_disease_models.svg" height="24" width="24" id="collectionDetailServiceField" alt="Disease Models" title="Disease Models"/>
+                </span>
+                <span v-if="service_fields == '002_advanced_technologies_for_personalised_oncology'">
+                        <img src="@/assets/service_field_icons/002_advanced_technologies_for_personalised_oncology.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '003_biomarkerResearch_development_and_validation'">
+                  <img src="@/assets/service_field_icons/003_biomarkerResearch_development_and_validation.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '004_new_therapeutic_solutions'">
+                  <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '005_accelerated_translation_into_personalised_oncology_clinical_practice'">
+                  <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '006_open_digital_research_services'">
+                  <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+                <span v-if="service_fields == '010_training'">
+                  <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
+            </span>
+            </div>
           </h5>
         </header>
 
@@ -110,9 +166,33 @@
                     :to="'/collection/' + collectionDetail.id"
                     title="Collection details"
                     class="text-dark">
-                    <span
-                      class="fa fa-server collection-icon fa-lg mr-2 text-primary"
-                      aria-hidden="true"></span>
+                    <!-- use a computed property for the display of the collectionDetail Icon -->
+                    <!--<img v-bind:src="require('@/assets/service_field_icons/'+collectionServiceFieldIcon(collectionDetail)+'.svg')" height="24" width="24" id="collectionDetailServiceField"/>-->
+                    <!--                <img v-bind:src="require('@/assets/service_field_icons/'+collectionDetail.service_field.id+'.svg')" height="24" width="24" id="collectionDetailServiceField"/>-->
+                    <!-- <img :src="imgUrl" height="24" width="24" id="collectionDetailServiceField"/> -->
+                    <span v-for="service_fields in collectionDetail.service_field" :key="service_fields.id">
+                      <span v-if="service_fields.id == '001_disease_models'">
+                        <img src="@/assets/service_field_icons/001_disease_models.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                      </span>
+                      <span v-if="service_fields.id == '002_advanced_technologies_for_personalised_oncology'">
+                        <img src="@/assets/service_field_icons/002_advanced_technologies_for_personalised_oncology.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                      </span>
+                      <span v-if="service_fields.id == '003_biomarkerResearch_development_and_validation'">
+                        <img src="@/assets/service_field_icons/003_biomarkerResearch_development_and_validation.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                      </span>
+                      <span v-if="service_fields.id == '004_new_therapeutic_solutions'">
+                        <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                      </span>
+                      <span v-if="service_fields.id == '005_accelerated_translation_into_personalised_oncology_clinical_practice'">
+                        <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                      </span>
+                      <span v-if="service_fields.id == '006_open_digital_research_services'">
+                        <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                      </span>
+                      <span v-if="service_fields.id == '010_training'">
+                        <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                      </span>
+                    </span>
                     <span class="collection-name">{{
                       collectionDetail.name
                     }}</span>
@@ -179,11 +259,80 @@ export default {
   },
   data () {
     return {
+      displayed_fields: [],
       biobankSelected: false,
       showCollections: false
     }
   },
   methods: {
+    debug (...args) {
+      console.log(...args)
+    },
+    /**
+     * Map the service fields to icons bc is biobank.collections
+     */
+    /*
+    biobankCollectionServiceField (biobankCollections) {
+      let biobankCollectionServiceField = []
+      // const biobankCollectionAllServiceFields = [];
+      console.log('BiobankCard-biobankCollectionServiceField-1')
+      if (!biobankCollections) {
+        console.log('BiobankCard-biobankCollectionServiceField-2')
+        return biobankCollectionServiceField
+      }
+      console.log('BiobankCard-biobankCollectionServiceField-3', biobankCollections)
+      const biobankCollectionAllServiceFields = biobankCollections
+        .filter(bcsf => bcsf.service_field)
+      // .map(bc => ({ label: bc.service_field.label, value: bc.service_field.id }))
+      console.log('BiobankCard-biobankCollectionServiceField-4', biobankCollectionAllServiceFields)
+      biobankCollectionServiceField = biobankCollectionAllServiceFields
+        .map(sc => sc.service_field.id)
+        .some(id => biobankCollectionAllServiceFields.map(pc => pc.value).includes(id))
+      console.log('BiobankCard-biobankCollectionServiceField-5', biobankCollectionServiceField)
+      return biobankCollectionServiceField
+    },
+    */
+    biobankCollectionServiceFields (biobankCollections) {
+      const serviceFields = []
+      for (const coll of biobankCollections) {
+        for (const collsf of coll.service_field) {
+          console.log('BiobankCard-biobankCollectionServiceFields-if', serviceFields, !serviceFields.includes(collsf.id), collsf)
+          if (!serviceFields.includes(collsf.id)) {
+            serviceFields.push(collsf.id)
+          }
+        }
+      }
+      console.log('BiobankCard-biobankCollectionServiceFields-5', serviceFields)
+      return serviceFields
+    },
+    /*
+      console.log('BiobankCard-biobankCollectionServiceField-3', this.biobank.collections)
+      const biobankCollectionServiceField = this.biobank.collections
+        .filter(bcf => bcf.service_field)
+      //  .map(bc => ({ label: bc.label, value: bc.id }))
+      console.log('BiobankCard-biobankCollectionServiceField-4', biobankCollectionServiceField)
+      const thisBiobankServiceFields = biobankCollectionServiceField
+        .map(sc => sc.value)
+        .some(id => biobankCollectionServiceField.map(pc => pc.value).includes(id))
+      console.log('BiobankCard-biobankCollectionServiceField-5', thisBiobankServiceFields)
+    */
+    byString (o, s) {
+      s = s.replace(/\[(\w+)\]/g, '.$1') // convert indexes to properties
+      s = s.replace(/^\./, '') // strip a leading dot
+      var a = s.split('.')
+      for (var i = 0, n = a.length; i < n; ++i) {
+        var k = a[i]
+        if (k in o) {
+          o = o[k]
+        } else {
+          return
+        }
+      }
+      return o
+    },
+    collectionServiceFieldIcon (serviceField) {
+      return '@/assets/service_field_icons/' + serviceField + '.svg'
+    },
     getCollectionDetails,
     collectionViewmodel (collectiondetails) {
       const attributes = []
@@ -197,9 +346,6 @@ export default {
         }
       }
       return { attributes }
-    },
-    debug (...args) {
-      console.log(...args)
     }
   },
   computed: {
@@ -221,19 +367,20 @@ export default {
     cardContainerHeight () {
       const charactersInName = this.biobank.name.length
 
-      let height = 20.5 // default
+      // TODO: add icon height to calculation
+      let height = 17.5 // default
 
       if (charactersInName <= 30) {
-        height = 22.2
+        height = 17.2
       }
 
       /** When a biobank name is too long it will take three rows (most of the time), tipping point is 80 characters. */
       if (charactersInName >= 70) {
-        height = 19.2
+        height = 14.2
       }
 
       if (charactersInName >= 100) {
-        height = 17.7
+        height = 14.7
       }
 
       return `height: ${height}rem;max-height: ${height}rem;`
