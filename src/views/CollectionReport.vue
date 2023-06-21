@@ -6,7 +6,7 @@
       type="application/ld+json"/> -->
     {{debug("CollectionReport-Display-1")}}
     <b-alert
-      v-if="collection && collection.biobank.withdrawn"
+      v-if="collection && collection.service_provider.withdrawn"
       show
       variant="warning">
       {{ uiText["collection_withdrawn"] }}
@@ -52,7 +52,7 @@
             v-if="collection"
             class="ml-auto"
             :bookmark="false"
-            :disabled="collection.biobank.withdrawn"/>
+            :disabled="collection.service_provider.withdrawn"/>
         </div>
       </div>
 
@@ -74,11 +74,14 @@
               <collection-report-info-card
                 :info="info"></collection-report-info-card>
             </div>
+            <!-- Remove Facts for now -->
+            <!--
             <div
               class="row"
               v-if="factsData && Object.keys(factsData).length > 0">
               <facts-table :attribute="factsData"></facts-table>
             </div>
+            -->
           </div>
         </div>
       </div>
@@ -95,8 +98,7 @@ import CollectionReportInfoCard from '../components/cards/CollectionReportInfoCa
 import { collectionReportInformation } from '../utils/templateMapper'
 // import { mapCollectionToBioschemas } from '../utils/bioschemasMapper'
 import ReportCollectionDetails from '../components/report-components/ReportCollectionDetails.vue'
-import ReportCollectionDetails from '../components/report-components/ReportCollectionDetails.vue'
-import FactsTable from '../components/generators/custom-view-components/FactsTable.vue'
+// import FactsTable from '../components/generators/custom-view-components/FactsTable.vue'
 import CheckOut from '../components/checkout/CheckOut.vue'
 
 export default {
@@ -106,13 +108,16 @@ export default {
     CollectionReportInfoCard,
     Loading,
     ReportCollectionDetails,
-    FactsTable,
+    // FactsTable,
     CheckOut
   },
   methods: {
     ...mapActions(['GetCollectionReport']),
     back () {
       this.$router.go(-1)
+    },
+    debug (...args) {
+      console.log(...args)
     }
   },
   computed: {

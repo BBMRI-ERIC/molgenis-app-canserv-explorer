@@ -197,6 +197,9 @@ export default {
         }
       }
       return { attributes }
+    },
+    debug (...args) {
+      console.log(...args)
     }
   },
   computed: {

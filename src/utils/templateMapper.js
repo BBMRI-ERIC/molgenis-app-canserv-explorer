@@ -1,13 +1,10 @@
 /* eslint-disable camelcase */
 import state from '../store/state'
 
-<<<<<<< HEAD
-=======
 function getTextForUI (item) {
   return item.label || item.name || item.id
 }
 
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
 export const getSize = obj => {
   return obj.size
     ? [`${obj.size} samples`]
@@ -26,13 +23,8 @@ export const mapToString = (object, property, prefix, suffix) => {
 
 export const mapObjArray = (objects) => {
   if (!objects) return []
-<<<<<<< HEAD
-  if (!objects.some(o => o.uri)) return objects.map(item => item.label || item.name)
-  else return objects.map(item => ({ label: item.label || item.name, uri: item.uri || '#' }))
-=======
   if (!objects.some(o => o.uri || o.url)) return objects.map(item => getTextForUI(item))
   else return objects.map(item => ({ label: getTextForUI(item), uri: item.uri || item.url || '' }))
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
 }
 
 export const mapUrl = url =>
@@ -104,13 +96,10 @@ export const getViewmodel = (object, columns) => {
         attributeValue = mapToString(object[columnInfo.column], columnInfo.property, columnInfo.prefix, columnInfo.suffix)
         break
       }
-<<<<<<< HEAD
-=======
       case 'custom': {
         attributeValue = object[columnInfo.column]
         break
       }
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
       case 'array': {
         attributeValue = object[columnInfo.column]
         break
@@ -130,13 +119,10 @@ export const getViewmodel = (object, columns) => {
 
     const attribute = { label: columnInfo.label, type: columnInfo.type, value: attributeValue }
 
-<<<<<<< HEAD
-=======
     if (columnInfo.component) {
       attribute.component = columnInfo.component
     }
 
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
     if (columnInfo.showCopyIcon) {
       attribute.linkValue = columnInfo.copyValuePrefix ? `${columnInfo.copyValuePrefix}${attributeValue}` : attributeValue
     }
@@ -146,11 +132,7 @@ export const getViewmodel = (object, columns) => {
   return { attributes }
 }
 
-<<<<<<< HEAD
 /* const mapSubcollections = (collections, level) => {
-=======
-const mapSubcollections = (collections, level) => {
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
   const subCollections = []
 
   for (const collection of collections) {
@@ -172,24 +154,14 @@ const mapSubcollections = (collections, level) => {
     }
   }
   return subCollections
-<<<<<<< HEAD
 } */
-=======
-}
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
 
 export const getCollectionDetails = collection => {
   const viewmodel = getViewmodel(collection, state.collectionColumns)
 
-<<<<<<< HEAD
   /*   if (collection.sub_collections && collection.sub_collections.length) {
     viewmodel.sub_collections = mapSubcollections(collection.sub_collections, 1)
   } */
-=======
-  if (collection.sub_collections && collection.sub_collections.length) {
-    viewmodel.sub_collections = mapSubcollections(collection.sub_collections, 1)
-  }
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
 
   return {
     ...collection,
@@ -201,15 +173,11 @@ export const getCollectionDetails = collection => {
  * Get all the types available within the collection tree
  */
 function extractCollectionTypes (collections, prevCollectionHashmap) {
-<<<<<<< HEAD
   const collectionTypes = prevCollectionHashmap && Object.keys(prevCollectionHashmap).length ? prevCollectionHashmap : {}
 
   console.log('extractCollectionTypes')
   console.log('extractCollectionTypes', collections, prevCollectionHashmap)
   console.log(JSON.stringify(collectionTypes))
-=======
-  let collectionTypes = prevCollectionHashmap && Object.keys(prevCollectionHashmap).length ? prevCollectionHashmap : {}
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
 
   for (const collection of collections) {
     if (collection.type) {
@@ -223,29 +191,18 @@ function extractCollectionTypes (collections, prevCollectionHashmap) {
       }
     }
 
-<<<<<<< HEAD
     /*     if (collection.sub_collections && collection.sub_collections.length) {
       const newHashmap = extractCollectionTypes(collection.sub_collections, collectionTypes)
       collectionTypes = { ...collectionTypes, ...newHashmap }
     } */
   }
   console.log(JSON.stringify(collectionTypes))
-=======
-    if (collection.sub_collections && collection.sub_collections.length) {
-      const newHashmap = extractCollectionTypes(collection.sub_collections, collectionTypes)
-      collectionTypes = { ...collectionTypes, ...newHashmap }
-    }
-  }
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
   return collectionTypes
 }
 
 export const getBiobankDetails = (biobank) => {
-<<<<<<< HEAD
   console.log('getBiobankDetails')
   console.log('getBiobankDetails', biobank)
-=======
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
   // check if biobank is only the id (lazy loading)
   if (typeof biobank === 'string') {
     return biobank
@@ -275,11 +232,8 @@ export const collectionReportInformation = collection => {
 
   collectionReport.head = getNameOfHead(collection.head) || undefined
 
-<<<<<<< HEAD
   collectionReport.unit_of_access = collection.unit_of_access || undefined
 
-=======
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
   if (collection.contact) {
     collectionReport.contact = {
       name: getName(collection.contact),
@@ -288,7 +242,6 @@ export const collectionReportInformation = collection => {
     }
   }
 
-<<<<<<< HEAD
   if (collection.service_provider) {
     console.log('collectionReportInformation-1:', collection.service_provider.id, collection.service_provider.name, collection.service_provider.name_of_institue, collection.service_provider.url, collection.service_provider.country)
     collectionReport.service_provider = {
@@ -304,8 +257,6 @@ export const collectionReportInformation = collection => {
     }
   }
 
-=======
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
   if (collection.biobank) {
     collectionReport.biobank = {
       id: collection.biobank.id,
@@ -369,51 +320,3 @@ export const mapContactInfo = instance => {
     }
   }
 }
-<<<<<<< HEAD
-
-export const mapNetworkData = network => {
-  return {
-    'Common collection focus': {
-      value: network.common_collection_focus,
-      type: 'bool'
-    },
-    'Common charter': {
-      value: network.common_charter,
-      type: 'bool'
-    },
-    'Common SOPS': {
-      value: network.common_sops,
-      type: 'bool'
-    },
-    'Data access policy': {
-      value: network.common_data_access_policy,
-      type: 'bool'
-    },
-    'Sample access policy': {
-      value: network.common_sample_access_policy,
-      type: 'bool'
-    },
-    'Common MTA': {
-      value: network.common_mta,
-      type: 'bool'
-    },
-    'Common image access policy': {
-      value: network.common_image_access_policy,
-      type: 'bool'
-    },
-    'Common image MTA': {
-      value: network.common_image_mta,
-      type: 'bool'
-    },
-    'Common representation': {
-      value: network.common_representation,
-      type: 'bool'
-    },
-    'Common URL': {
-      value: network.common_url,
-      type: 'bool'
-    }
-  }
-}
-=======
->>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995

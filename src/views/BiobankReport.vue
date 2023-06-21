@@ -107,9 +107,6 @@ import ReportTitle from '../components/report-components/ReportTitle.vue'
 import CollectionTitle from '../components/report-components/CollectionTitle.vue'
 import ViewGenerator from '../components/generators/ViewGenerator.vue'
 import { sortCollectionsByName } from '../utils/sorting'
-import CollectionTitle from '../components/report-components/CollectionTitle.vue'
-import ViewGenerator from '../components/generators/ViewGenerator.vue'
-import { sortCollectionsByName } from '../utils/sorting'
 import CollectionSelector from '../components/buttons/CollectionSelector.vue'
 import CheckOut from '../components/checkout/CheckOut.vue'
 
@@ -131,8 +128,6 @@ export default {
     Loading,
     ViewGenerator,
     CollectionTitle,
-    Loading,
-    ViewGenerator,
     CollectionSelector,
     CheckOut
   },
@@ -186,6 +181,9 @@ export default {
   },
   methods: {
     ...mapActions(['GetBiobankReport'])
+  },
+  debug (...args) {
+    console.log(...args)
   },
   mounted () {
     this.GetBiobankReport(this.$store.state.route.params.id)
