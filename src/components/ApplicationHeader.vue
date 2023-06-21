@@ -2,7 +2,89 @@
   <div
     class="px-3 pt-1 header-bar card sticky-top border-0 shadow-sm"
     :style="`top:${menuHeight}px;`">
-    <div class="row my-2">
+      <div>
+        <table >
+          <td>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/001_disease_models.svg" height="24" width="24" id="collectionDetailServiceField" alt="Disease Models" title="Disease Models"/>
+              </td>
+              <td colspan='2'>
+                Disease Models
+              </td>
+            </tr>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/002_advanced_technologies_for_personalised_oncology.svg" height="24" width="24" id="collectionDetailServiceField"/>
+              </td>
+              <td colspan='2'>
+                Advanced Technologies for Personalised Oncology
+              </td>
+            </tr>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/003_biomarkerResearch_development_and_validation.svg" height="24" width="24" id="collectionDetailServiceField"/>
+              </td>
+              <td colspan='2'>
+                Biomarker Research, Development, and Validation
+              </td>
+            </tr>
+          </td>
+          <td>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField" alt="Disease Models" title="Disease Models"/>
+              </td>
+              <td colspan='2'>
+                New Therapeutic Solutions
+              </td>
+            </tr>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
+              </td>
+              <td colspan='2'>
+                Accelerated Translation into Personalised Oncology Clinical Practice
+              </td>
+            </tr>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
+              </td>
+              <td colspan='2'>
+                Open Digital Research Services
+              </td>
+            </tr>
+          </td>
+          <td>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField" alt="Disease Models" title="Disease Models"/>
+              </td>
+              <td colspan='2'>
+                Access to human samples and data
+              </td>
+            </tr>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/009_planning_and_design_of_complex_clinical_trials.svg" height="24" width="24" id="collectionDetailServiceField"/>
+              </td>
+              <td colspan='2'>
+                Planning and design of complex clinical trials
+              </td>
+            </tr>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
+              </td>
+              <td colspan='2'>
+                Training
+              </td>
+            </tr>
+          </td>
+        </table>
+      </div>
+      <div class="row my-2">
       <div class="col-8" aria-label="action-bar">
         <div class="search-container mr-2 mb-2">
           <search-filter />
@@ -20,9 +102,11 @@
           "
           bookmark/>
       </div>
+      <!--
       <div class="col text-center">
         <a href="https://www.canserv.eu/wp-content/uploads/User-Guide-How-to-browse-and-select-services.pdf">How to browse and select services in the Catalogue Platform</a>
       </div>
+      -->
       <div class="col text-right">
         <router-link
           v-if="showSettings"
