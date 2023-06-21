@@ -1,6 +1,7 @@
 import { createBookmark } from '../../utils/bookmarkMapper'
 
 export const collectionMutations = {
+<<<<<<< HEAD
 
   SetAllCollectionRelationData (state, response) {
     console.log('collectionMutations')
@@ -16,6 +17,17 @@ export const collectionMutations = {
       isSubcollection: item.data.parent_collection !== undefined,
       parentCollection: item.data.parent_collection !== undefined,
       commercialUse: item.data.collaboration_commercial !== undefined
+=======
+  SetAllCollectionRelationData (state, response) {
+    const collectionRelationData = response.items.map(item => ({
+      collectionId: item.data.id,
+      collectionName: item.data.label || item.data.name,
+      biobankId: item.data.biobank.data.id,
+      biobankName: item.data.biobank.data.label || item.data.biobank.data.name,
+      isSubcollection: item.data.parent_collection !== undefined,
+      parentCollection: item.data.parent_collection,
+      commercialUse: item.data.collaboration_commercial
+>>>>>>> 9814f139554b6018325e1317dd8a5e4e52286995
     }))
 
     const nonCommercialUseCollections = []

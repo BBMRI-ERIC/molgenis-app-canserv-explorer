@@ -38,9 +38,7 @@ export default {
   computed: {
     ...mapState(['collectionColumns']),
     collectionModel () {
-      return this.collection
-        ? getCollectionDetails(this.collection)
-        : {}
+      return this.collection ? getCollectionDetails(this.collection) : {}
     },
     isTopLevelCollection () {
       return this.collection.parent_collection === undefined

@@ -47,11 +47,24 @@ export default {
     viewmodel: {
       type: Object,
       required: true
+    },
+    excludeComponents: {
+      type: Array,
+      required: false,
+      default: () => []
     }
   },
   computed: {
     renderObject () {
       return this.viewmodel
+    },
+    attributes () {
+      return this.renderObject.attributes.filter((attr) => !attr.component)
+    },
+    customComponents () {
+      return this.renderObject.attributes.filter(
+        (attr) => !this.excludeComponents.includes(attr.component)
+      )
     }
   },
   methods: {

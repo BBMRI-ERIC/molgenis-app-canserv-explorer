@@ -215,6 +215,14 @@
       </div>
     </div>
     <negotiator-selection v-model="showCart" />
+
+        <toggle-filter
+          class="mb-1"
+          v-for="toggleFilter of toggleFilters"
+          @input="(value) => filterChange(toggleFilter.name, value)"
+          :value="activeFilters[toggleFilter.name]"
+          :key="toggleFilter.name"
+          v-bind="toggleFilter"/>
   </div>
 </template>
 
@@ -227,6 +235,8 @@ import SearchFilter from './filters/SearchFilter.vue'
 import CheckboxFilter from './filters/CheckboxFilter.vue'
 import MultiFilter from './filters/MultiFilter.vue'
 import NegotiatorSelection from './popovers/NegotiatorSelection.vue'
+import ToggleFilter from './filters/ToggleFilter.vue'
+import CheckOut from './checkout/CheckOut.vue'
 /** */
 
 export default {
@@ -235,7 +245,9 @@ export default {
     SearchFilter,
     CheckboxFilter,
     MultiFilter,
-    NegotiatorSelection
+    NegotiatorSelection,
+    ToggleFilter,
+    CheckOut
   },
   computed: {
     ...mapGetters([
@@ -262,12 +274,18 @@ export default {
     },
     facetsToRender () {
       return this.filterFacets
-        .filter(filter => !filter.builtIn)
-        .filter(filter => filter.showFacet)
+        .filter((filter) => !filter.builtIn)
+        .filter((filter) => filter.showFacet)
+        .filter((filter) => filter.component !== 'ToggleFilter')
+    },
+    toggleFilters () {
+      return this.filterFacets.filter(
+        (filter) => filter.component === 'ToggleFilter'
+      )
     },
     moreFacets () {
       return this.filterFacets.filter(
-        filter => !filter.showFacet && !filter.builtIn
+        (filter) => !filter.showFacet && !filter.builtIn
       )
     },
     iconStyle () {

@@ -8,96 +8,49 @@
         'back-side': showCollections,
       },
       fullSize ? 'biobank-card-large' : 'biobank-card',
-      'flip',
     ]">
-    <div tabindex="0">
-      {{debug("BiobankCard-biobank card - Details 1",JSON.stringify(biobank))}}
-      <section>
-        <div v-if="loading" class="loading-screen">
-          <span class="fa fa-spinner fa-spin fa-lg" aria-hidden="true"></span>
-        </div>
-        <div v-else>
-          {{debug("BiobankCard-biobank card - Details 2")}}
-          <header class="border-0 card-header p-1">
-            <h5 class="p-1 pb-0 mt-1">
-              <router-link
-                :to="'/biobank/' + biobank.id"
-                title="Service Provider details"
-                class="text-dark">
-                <span
-                  class="fa fa-server mr-2 text-primary"
-                  aria-hidden="true"></span>
-                <span class="biobank-name">{{ biobank.name }}</span>
-                <sup
-                  v-if="hasBiobankQuality"
-                  class="
-                    fa fa-check-circle-o
-                    text-success
-                    certificate-icon
-                    ml-1
-                  "
-                  aria-hidden="true"></sup>
-              </router-link>
-              <div>
-              <!-- add icons for service field for Service Provider View - back of card -->
-              <!--
-              {{debug("FrontbiobankCollectionServiceFields:", biobankCollectionServiceFields(biobank.collectionDetails))}}
-              <span v-for="service_fields in biobankCollectionServiceFields(biobank.collectionDetails)" :key="service_fields">
-                <span v-if="service_fields == '001_disease_models'">
-                  <img src="@/assets/service_field_icons/001_disease_models.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '002_advanced_technologies_for_personalised_oncology'">
-                        <img src="@/assets/service_field_icons/002_advanced_technologies_for_personalised_oncology.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '003_biomarkerResearch_development_and_validation'">
-                  <img src="@/assets/service_field_icons/003_biomarkerResearch_development_and_validation.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '004_new_therapeutic_solutions'">
-                  <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '005_accelerated_translation_into_personalised_oncology_clinical_practice'">
-                  <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '006_open_digital_research_services'">
-                  <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '010_training'">
-                  <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-              </span>
-              -->
-              <span v-for="(collectionDetail) of biobank.collectionDetails" :key="collectionDetail.id">
-                <span v-for="service_fields in collectionDetail.service_field" :key="service_fields.id">
-                  <span v-if="service_fields.id == '001_disease_models'">
-                    <img src="@/assets/service_field_icons/001_disease_models.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                  </span>
-                  <span v-if="service_fields.id == '002_advanced_technologies_for_personalised_oncology'">
-                          <img src="@/assets/service_field_icons/002_advanced_technologies_for_personalised_oncology.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                  </span>
-                  <span v-if="service_fields.id == '003_biomarkerResearch_development_and_validation'">
-                    <img src="@/assets/service_field_icons/003_biomarkerResearch_development_and_validation.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                  </span>
-                  <span v-if="service_fields.id == '004_new_therapeutic_solutions'">
-                    <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                  </span>
-                  <span v-if="service_fields.id == '005_accelerated_translation_into_personalised_oncology_clinical_practice'">
-                    <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                  </span>
-                  <span v-if="service_fields.id == '006_open_digital_research_services'">
-                    <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                  </span>
-                  <span v-if="service_fields.id == '010_training'">
-                    <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                  </span>
-                </span>
-              </span>
-              </div>
-            </h5>
-          </header>
+    <section
+      class="d-flex flex-column align-items-center">
+      <div v-if="loading" class="loading-screen">
+        <span class="fa fa-spinner fa-spin fa-lg" aria-hidden="true"></span>
+      </div>
+      <div class="align-self-stretch" v-else>
+        <header class="border-0 card-header p-1">
+          <h5 class="pt-1 pl-1 pr-1 mt-1">
+            <router-link
+              :to="'/biobank/' + biobank.id"
+              title="Biobank details"
+              class="text-dark">
+              <span
+                class="fa fa-server mr-2 text-primary"
+                aria-hidden="true"></span>
+              <span class="biobank-name">{{ biobank.name }}</span>
+              <sup
+                v-if="hasBiobankQuality"
+                class="d-inline-block"
+                aria-hidden="true">
+                <info-popover
+                  faIcon="fa-check-circle-o"
+                  textColor="text-success"
+                  class="ml-1 certificate-icon"
+                  popover-placement="bottom">
+                  <div
+                    class="popover-content"
+                    v-for="quality of biobankQualities"
+                    :key="quality.label">
+                    <b>{{ quality.label }}</b>
+                    <p class="mt-1">
+                      {{ qualityStandardsDictionary[quality.label] }}
+                    </p>
+                  </div>
+                </info-popover>
+              </sup>
+            </router-link>
+          </h5>
+        </header>
 
-          <div class="shadow-sm" v-if="numberOfCollections">
-            {{debug("BiobankCard-biobank card - Services")}}
-
+        <div v-if="!loading && !showCollections">
+          <div class="mb-1 shadow-sm" v-if="numberOfCollections">
             <button
               class="btn btn-link text-info pl-2"
               @click.prevent="showCollections = true">
@@ -106,8 +59,8 @@
           </div>
           <div class="p-2 pt-1 biobank-section" :style="cardContainerHeight">
             <small>
-              {{debug("BiobankCard-view-generator:viewmodel:biobankcardViewmodel", biobank.id, biobank.name)}}
               <view-generator :viewmodel="biobankcardViewmodel" />
+              <matches-on :viewmodel="biobank" />
               <router-link
                 :to="'/biobank/' + biobank.id"
                 :title="`${biobank.name} details`"
@@ -117,63 +70,8 @@
             </small>
           </div>
         </div>
-      </section>
-      <section>
-        <div v-if="loading" class="loading-screen">
-          <span class="fa fa-spinner fa-spin fa-lg" aria-hidden="true"></span>
-        </div>
-        <!-- We need to hide this, because you cannot have two scrollbars at the same time. -->
-        <div v-if="!loading && showCollections">
-          <header class="border-0 card-header p-1">
-            <h5 class="pt-1 pl-1 pr-1 mt-1">
-              <router-link
-                :to="'/biobank/' + biobank.id"
-                title="Biobank details"
-                class="text-dark">
-                <span
-                  class="fa fa-server mr-2 text-primary"
-                  aria-hidden="true"></span>
-                <span class="biobank-name">{{ biobank.name }}</span>
-                <sup
-                  v-if="hasBiobankQuality"
-                  class="
-                    fa fa-check-circle-o
-                    text-success
-                    certificate-icon
-                    ml-1
-                  "
-                  aria-hidden="true"></sup>
-              </router-link>
-            </h5>
-            <!-- add icons for service field for Service Provider View - front of card, first view -->
-            <!-- {{debug("biobankCollectionServiceField:", biobankCollectionServiceField(biobank.collectionDetails))}} -->
-            <!-- <span v-for="(collectionDetail) of biobank.collectionDetails" :key="collectionDetail.id">
-              <span v-for="service_fields in collectionDetail.service_field" :key="service_fields.id">-->
-            {{debug("biobankCollectionServiceFields:", biobankCollectionServiceFields(biobank.collectionDetails))}}
-            <span v-for="service_fields in biobankCollectionServiceFields(biobank.collectionDetails)" :key="service_fields">
-                <span v-if="service_fields == '001_disease_models'">
-                  <img src="@/assets/service_field_icons/001_disease_models.svg" height="24" width="24" id="collectionDetailServiceField" alt="Disease Models" title="Disease Models"/>
-                </span>
-                <span v-if="service_fields == '002_advanced_technologies_for_personalised_oncology'">
-                        <img src="@/assets/service_field_icons/002_advanced_technologies_for_personalised_oncology.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '003_biomarkerResearch_development_and_validation'">
-                  <img src="@/assets/service_field_icons/003_biomarkerResearch_development_and_validation.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '004_new_therapeutic_solutions'">
-                  <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '005_accelerated_translation_into_personalised_oncology_clinical_practice'">
-                  <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '006_open_digital_research_services'">
-                  <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-                <span v-if="service_fields == '010_training'">
-                  <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                </span>
-              </span>
-          </header>
+
+        <div v-else>
           <div class="d-flex mb-1 shadow-sm">
             <button
               class="btn btn-link text-info pl-2"
@@ -189,7 +87,6 @@
                 }}
                 available
               </h5>
-
               <collection-selector
                 v-if="numberOfCollections > 1"
                 class="text-right mr-1 ml-auto align-self-center"
@@ -208,48 +105,14 @@
               v-for="(collectionDetail, index) of biobank.collectionDetails"
               :key="collectionDetail.id">
               <div v-if="showCollections" class="mb-2">
-                <div class="pl-2 py-2 d-flex">
-                  <!-- TODO replace the collection-icon with the field icon -->
+                <div class="pl-2 pt-2 d-flex">
                   <router-link
                     :to="'/collection/' + collectionDetail.id"
-                    title="Service details"
+                    title="Collection details"
                     class="text-dark">
-                    <!-- use a computed property for the display of the collectionDetail Icon -->
-                    <!--<img v-bind:src="require('@/assets/service_field_icons/'+collectionServiceFieldIcon(collectionDetail)+'.svg')" height="24" width="24" id="collectionDetailServiceField"/>-->
-                    <!--                <img v-bind:src="require('@/assets/service_field_icons/'+collectionDetail.service_field.id+'.svg')" height="24" width="24" id="collectionDetailServiceField"/>-->
-                    <!-- <img :src="imgUrl" height="24" width="24" id="collectionDetailServiceField"/> -->
-                    <span v-for="service_fields in collectionDetail.service_field" :key="service_fields.id">
-                      <span v-if="service_fields.id == '001_disease_models'">
-                        <img src="@/assets/service_field_icons/001_disease_models.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                      </span>
-                      <span v-if="service_fields.id == '002_advanced_technologies_for_personalised_oncology'">
-                        <img src="@/assets/service_field_icons/002_advanced_technologies_for_personalised_oncology.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                      </span>
-                      <span v-if="service_fields.id == '003_biomarkerResearch_development_and_validation'">
-                        <img src="@/assets/service_field_icons/003_biomarkerResearch_development_and_validation.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                      </span>
-                      <span v-if="service_fields.id == '004_new_therapeutic_solutions'">
-                        <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                      </span>
-                      <span v-if="service_fields.id == '005_accelerated_translation_into_personalised_oncology_clinical_practice'">
-                        <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                      </span>
-                      <span v-if="service_fields.id == '006_open_digital_research_services'">
-                        <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                      </span>
-                      <span v-if="service_fields.id == '010_training'">
-                        <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
-                      </span>
-                    </span>
-                    <!--<span
-                      class="
-                        fa fa-server
-                        collection-icon
-                        fa-lg
-                        mr-2
-                        text-primary
-                      "
-                      aria-hidden="true"></span>-->
+                    <span
+                      class="fa fa-server collection-icon fa-lg mr-2 text-primary"
+                      aria-hidden="true"></span>
                     <span class="collection-name">{{
                       collectionDetail.name
                     }}</span>
@@ -265,12 +128,14 @@
 
                 <small>
                   <view-generator
-                    class="p-2 pt-2"
+                    class="p-1"
                     :viewmodel="collectionViewmodel(collectionDetail)"/>
+
+                  <matches-on :viewmodel="collectionDetail" class="px-1 ml-1" />
                   <router-link
                     :to="'/collection/' + collectionDetail.id"
                     :title="`${collectionDetail.name} details`"
-                    class="text-info ml-2 pl-1">
+                    class="text-info ml-1 pl-1">
                     <span>More details</span>
                   </router-link>
                 </small>
@@ -279,8 +144,8 @@
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </article>
 </template>
 
@@ -292,12 +157,16 @@ import {
 } from '../../utils/templateMapper'
 import ViewGenerator from '../generators/ViewGenerator.vue'
 import CollectionSelector from '../buttons/CollectionSelector.vue'
+import MatchesOn from '../generators/view-components/MatchesOn.vue'
+import InfoPopover from '../popovers/InfoPopover.vue'
 
 export default {
   name: 'biobank-card',
   components: {
     ViewGenerator,
-    CollectionSelector
+    CollectionSelector,
+    MatchesOn,
+    InfoPopover
   },
   props: {
     fullSize: {
@@ -310,102 +179,23 @@ export default {
   },
   data () {
     return {
-      displayed_fields: [],
       biobankSelected: false,
       showCollections: false
     }
   },
   methods: {
-    debug (...args) {
-      console.log(...args)
-    },
-    /**
-     * Map the service fields to icons bc is biobank.collections
-     */
-    /*
-    biobankCollectionServiceField (biobankCollections) {
-      let biobankCollectionServiceField = []
-      // const biobankCollectionAllServiceFields = [];
-      console.log('BiobankCard-biobankCollectionServiceField-1')
-      if (!biobankCollections) {
-        console.log('BiobankCard-biobankCollectionServiceField-2')
-        return biobankCollectionServiceField
-      }
-      console.log('BiobankCard-biobankCollectionServiceField-3', biobankCollections)
-
-      const biobankCollectionAllServiceFields = biobankCollections
-        .filter(bcsf => bcsf.service_field)
-      // .map(bc => ({ label: bc.service_field.label, value: bc.service_field.id }))
-      console.log('BiobankCard-biobankCollectionServiceField-4', biobankCollectionAllServiceFields)
-
-      biobankCollectionServiceField = biobankCollectionAllServiceFields
-        .map(sc => sc.service_field.id)
-        .some(id => biobankCollectionAllServiceFields.map(pc => pc.value).includes(id))
-      console.log('BiobankCard-biobankCollectionServiceField-5', biobankCollectionServiceField)
-
-      return biobankCollectionServiceField
-    },
-    */
-    biobankCollectionServiceFields (biobankCollections) {
-      const serviceFields = []
-      for (const coll of biobankCollections) {
-        for (const collsf of coll.service_field) {
-          console.log('BiobankCard-biobankCollectionServiceFields-if', serviceFields, !serviceFields.includes(collsf.id), collsf)
-          if (!serviceFields.includes(collsf.id)) {
-            serviceFields.push(collsf.id)
-          }
-        }
-      }
-      console.log('BiobankCard-biobankCollectionServiceFields-5', serviceFields)
-      return serviceFields
-    },
-    /*
-      console.log('BiobankCard-biobankCollectionServiceField-3', this.biobank.collections)
-      const biobankCollectionServiceField = this.biobank.collections
-        .filter(bcf => bcf.service_field)
-      //  .map(bc => ({ label: bc.label, value: bc.id }))
-      console.log('BiobankCard-biobankCollectionServiceField-4', biobankCollectionServiceField)
-
-      const thisBiobankServiceFields = biobankCollectionServiceField
-        .map(sc => sc.value)
-        .some(id => biobankCollectionServiceField.map(pc => pc.value).includes(id))
-
-      console.log('BiobankCard-biobankCollectionServiceField-5', thisBiobankServiceFields)
-    */
-    byString (o, s) {
-      s = s.replace(/\[(\w+)\]/g, '.$1') // convert indexes to properties
-      s = s.replace(/^\./, '') // strip a leading dot
-      var a = s.split('.')
-      for (var i = 0, n = a.length; i < n; ++i) {
-        var k = a[i]
-        if (k in o) {
-          o = o[k]
-        } else {
-          return
-        }
-      }
-      return o
-    },
-    collectionServiceFieldIcon (serviceField) {
-      return '@/assets/service_field_icons/' + serviceField + '.svg'
-    },
     getCollectionDetails,
     collectionViewmodel (collectiondetails) {
-      console.log('BiobankCard-collectionViewmodel-1', collectiondetails)
       const attributes = []
-      console.log('BiobankCard-collectionViewmodel-2', this.collectionColumns)
       for (const item of this.collectionColumns) {
-        console.log('BiobankCard-collectionViewmodel-2.1', item)
         if (item.showOnBiobankCard) {
-          console.log('BiobankCard-collectionViewmodel-2.2 showOnBiobankCard', item.showOnBiobankCard)
           attributes.push(
             collectiondetails.viewmodel.attributes.find(
-              vm => vm.label === item.label
+              (vm) => vm.label === item.label
             )
           )
         }
       }
-      console.log('BiobankCard-collectionViewmodel-3', attributes)
       return { attributes }
     }
   },
@@ -413,89 +203,78 @@ export default {
     ...mapState([
       'biobankColumns',
       'collectionColumns',
-      'biobankCardShowCollections'
+      'biobankCardShowCollections',
+      'qualityStandardsDictionary'
     ]),
-    ...mapGetters(['BiobankCard-selectedCollections', 'uiText']),
+    ...mapGetters(['selectedCollections', 'uiText']),
     lastCollection () {
       return this.biobank.collectionDetails.length - 1
     },
     numberOfCollections () {
-      console.log('BiobankCard-numberOfCollections')
-      console.log('BiobankCard-numberOfCollections-1', this.biobank)
-      console.log('BiobankCard-numberOfCollections-2', this.biobank.services)
-      console.log('BiobankCard-numberOfCollections-3', this.biobank.collections)
-      return this.biobank.collections ? this.biobank.collections.length : 0
+      return this.biobank.collectionDetails
+        ? this.biobank.collectionDetails.length
+        : 0
     },
     cardContainerHeight () {
-      console.log('BiobankCard-cardContainerHeight')
-      console.log(JSON.stringify(this.biobank))
       const charactersInName = this.biobank.name.length
-      // TODO: add icon height to calculation
 
-      let height = 17.5 // default
+      let height = 20.5 // default
 
       if (charactersInName <= 30) {
-        height = 17.2
+        height = 22.2
       }
 
       /** When a biobank name is too long it will take three rows (most of the time), tipping point is 80 characters. */
-      if (charactersInName >= 80) {
-        height = 14
+      if (charactersInName >= 70) {
+        height = 19.2
+      }
+
+      if (charactersInName >= 100) {
+        height = 17.7
       }
 
       return `height: ${height}rem;max-height: ${height}rem;`
     },
     biobankcardViewmodel () {
-      console.log('biobankcardViewmodel-1')
       // check if biobank is still loading
       if (this.loading) return {}
 
-      console.log('biobankcardViewmodel-2')
-
       const { viewmodel } = getBiobankDetails(this.biobank)
-      console.log('biobankcardViewmodel-3', viewmodel)
       const attributes = []
 
       for (const item of this.biobankColumns) {
         if (item.showOnBiobankCard) {
           attributes.push(
-            viewmodel.attributes.find(vm => vm.label === item.label)
+            viewmodel.attributes.find((vm) => vm.label === item.label)
           )
         }
       }
-      console.log('biobankcardViewmodel-4', attributes)
       return { attributes }
     },
     hasBiobankQuality () {
-      return false
-      /*       return this.biobankcardViewmodel.attributes.some(
-        attr => attr.type === 'quality' && attr.value && attr.value.length
+      return this.biobankcardViewmodel.attributes.some(
+        (attr) => attr.type === 'quality' && attr.value && attr.value.length
       )
-      */
     },
-    /** broken */
+    biobankQualities () {
+      return this.biobankcardViewmodel.attributes.find(
+        (attr) => attr.type === 'quality'
+      ).value
+    },
+    // broken
     biobankInSelection () {
-      console.log('BiobankCard-biobankInSelection-1')
-      if (!this.biobank.collections) {
-        console.log('BiobankCard-biobankInSelection-2')
-        return false
-      }
+      if (!this.biobank.collections) return false
 
-      console.log('BiobankCard-biobankInSelection-3', this.biobank.collections)
       const biobankCollectionSelection = this.biobank.collections
-        .filter(bcf => !bcf.parent_collection)
-        .map(bc => ({ label: bc.label || bc.name, value: bc.id }))
-      console.log('BiobankCard-biobankInSelection-4', biobankCollectionSelection)
-
-      const thisSelectedCollections = biobankCollectionSelection
-        .map(sc => sc.value)
-        .some(id => biobankCollectionSelection.map(pc => pc.value).includes(id))
-
-      console.log('BiobankCard-biobankInSelection-5', thisSelectedCollections)
-      return thisSelectedCollections
+        .filter((bcf) => !bcf.parent_collection)
+        .map((bc) => ({ label: bc.label || bc.name, value: bc.id }))
+      return this.selectedCollections
+        .map((sc) => sc.value)
+        .some((id) =>
+          biobankCollectionSelection.map((pc) => pc.value).includes(id)
+        )
     },
     loading () {
-      console.log('BiobankCard-biobankInSelection-loading')
       return typeof this.biobank === 'string'
     }
   },
@@ -548,7 +327,7 @@ export default {
 }
 
 .biobank-card-large {
-  width: 90% ;
+  width: 90%;
 }
 
 .biobank-card > header,
@@ -564,7 +343,6 @@ export default {
   background-color: #efefef;
 }
 
-/** Flip card */
 article {
   padding: 1.5rem;
 }
@@ -572,55 +350,19 @@ article {
 article footer {
   padding: 1.5rem 0 0 0;
 }
-article.flip {
+article {
   padding: 0;
   position: relative;
   height: 28rem;
-  perspective: 1000px;
 }
 
-article.flip div[tabindex="0"] {
+article {
   box-shadow: 0 6.4px 14.4px 0 rgba(0, 0, 0, 0.132),
     0 1.2px 3.6px 0 rgba(0, 0, 0, 0.108);
 }
 
-article.flip div[tabindex="0"]:focus {
-  outline: none !important;
-}
-
-article.flip [tabindex="0"] section {
-  background-color: #fff;
-  border: 0.1px solid #fff;
-}
-
-article.flip.back-side > [tabindex="0"] {
-  transform: rotateY(180deg);
-}
-article.flip [tabindex="0"] {
-  position: relative;
-  width: 100%;
+article section {
   height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-}
-
-article.flip [tabindex="0"] section {
-  position: absolute;
   width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  /* Safari */
-  backface-visibility: hidden;
-  box-sizing: border-box;
-  visibility: visible;
-  -webkit-perspective: 0;
-  perspective: 0;
 }
-
-article.flip [tabindex="0"] section:last-child {
-  transform: rotateY(180deg);
-}
-
-/** ~~~ */
 </style>
