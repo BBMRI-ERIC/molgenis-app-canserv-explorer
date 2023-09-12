@@ -12,6 +12,7 @@ const i18n = {
     remove: 'Remove',
     remove_all: 'Remove all',
     send_to_negotiator: 'Start your proposal in Negotiator',
+    send_to_aria: 'Start your proposal in ARIA',
     send_to_podium: 'Send to Podium',
     card_biobank_details: 'View Service Provider',
     card_collections_details: 'View Services',

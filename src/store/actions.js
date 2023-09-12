@@ -150,6 +150,20 @@ export default {
   },
 
   /**
+   * Transform the state into an ARIA magic link.
+   * calls the magic link endpoint by opening a new browser tab
+   */
+  async SendToARIA ({ state, getters, commit }) {
+    const ariaBaseURL = 'https://aria.canserv.eu/submit-proposal/new?platform_reference=canserv-ethics-review-1,'
+    const ariaParameters = '&acid=canserv&pid=0&cid=canserv-first-open-call'
+    const ariaMolgenisBaseURL = 'http://directory.canserv.eu/api/v2/:'
+    const collections = getters.selectedCollections
+    console.log('SendToARIA-1-collections', collections)
+    const magicLink = ariaBaseURL + collections.map(sc => encodeURIComponent(ariaMolgenisBaseURL + sc.value)).join(',') + ariaParameters
+    console.log('SendToARIA-1-magicLink', magicLink)
+    window.open(magicLink)
+  },
+  /**
    * Transform the state into a NegotiatorQuery object.
    * Calls the DirectoryController method '/export' which answers with a URL
    * that redirects to a Negotiator server specified in the Directory settings

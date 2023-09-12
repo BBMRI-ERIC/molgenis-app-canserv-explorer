@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     ...mapMutations(['RemoveCollectionsFromSelection']),
-    ...mapActions(['SendToNegotiator']),
+    ...mapActions(['SendToARIA', 'SendToNegotiator']),
     getNameForBiobank (collectionName) {
       const entryInDictionary = this.collectionBiobankDictionary[collectionName]
 
@@ -154,7 +154,8 @@ export default {
     },
     sendRequest () {
       this.cartVisible = false
-      this.SendToNegotiator()
+      this.SendToARIA()
+      // this.SendToNegotiator()
     }
   },
   watch: {
@@ -193,7 +194,8 @@ export default {
         : `${collectionCount} services(s) selected`
     },
     negotiatorButtonText () {
-      return this.isPodium ? this.uiText.send_to_podium : this.uiText.send_to_negotiator
+    // return this.isPodium ? this.uiText.send_to_podium : this.uiText.send_to_negotiator
+      return this.isPodium ? this.uiText.send_to_podium : this.uiText.send_to_aria
     },
     currentSelectedCollections () {
       return this.isPodium ? this.collectionsInPodium : this.selectedCollections
