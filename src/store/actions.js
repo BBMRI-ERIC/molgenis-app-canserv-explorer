@@ -154,7 +154,7 @@ export default {
    * calls the magic link endpoint by opening a new browser tab
    */
   async SendToARIA ({ state, getters, commit }) {
-    const ariaBaseURL = 'https://aria.canserv.eu/submit-proposal/new?platform_reference=canserv-ethics-review-1,'
+    const ariaBaseURL = 'https://aria.canserv.eu/submit-proposal/new?platform_reference='
     const ariaParameters = '&acid=canserv&pid=0&cid=canserv-first-open-call'
     const ariaMolgenisBaseURL = 'http://directory.canserv.eu/api/v2/:'
     const collections = getters.selectedCollections
