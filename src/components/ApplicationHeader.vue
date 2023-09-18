@@ -44,7 +44,7 @@
                 <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
               </td>
               <td colspan='2'>
-                Accelerated Translation into Personalised Oncology Clinical Practice
+                Clinical trials and design
               </td>
             </tr>
             <tr>
