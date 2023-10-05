@@ -59,7 +59,7 @@
           <td>
             <tr>
               <td colspan='2'>
-                <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField" alt="Disease Models" title="Disease Models"/>
+                <img src="@/assets/service_field_icons/007_access_to_human_samples_and_data.svg" height="24" width="24" id="collectionDetailServiceField" alt="Disease Models" title="Disease Models"/>
               </td>
               <td colspan='2'>
                 Access to human samples and data

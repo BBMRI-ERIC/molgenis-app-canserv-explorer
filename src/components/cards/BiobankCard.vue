@@ -97,6 +97,9 @@
                 <span v-if="service_fields == '006_open_digital_research_services'">
                   <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
                 </span>
+                <span v-if="service_fields == '007_access_to_human_samples_and_data'">
+                  <img src="@/assets/service_field_icons/007_access_to_human_samples_and_data.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
                 <span v-if="service_fields == '010_training'">
                   <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
                 </span>
@@ -188,6 +191,9 @@
                       </span>
                       <span v-if="service_fields.id == '006_open_digital_research_services'">
                         <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                      </span>
+                      <span v-if="service_fields == '007_access_to_human_samples_and_data'">
+                        <img src="@/assets/service_field_icons/007_access_to_human_samples_and_data.svg" height="24" width="24" id="collectionDetailServiceField"/>
                       </span>
                       <span v-if="service_fields.id == '010_training'">
                         <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
