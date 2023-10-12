@@ -103,6 +103,9 @@
                 <span v-if="service_fields == '010_training'">
                   <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
                 </span>
+                <span v-if="service_fields == '011_elsi_dimensions'">
+                  <img src="@/assets/service_field_icons/011_elsi_dimensions.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                </span>
             </span>
             </div>
           </h5>
@@ -197,6 +200,9 @@
                       </span>
                       <span v-if="service_fields.id == '010_training'">
                         <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
+                      </span>
+                      <span v-if="service_fields.id == '011_elsi_dimensions'">
+                        <img src="@/assets/service_field_icons/011_elsi_dimensions.svg" height="24" width="24" id="collectionDetailServiceField"/>
                       </span>
                     </span>
                     <span class="collection-name">{{

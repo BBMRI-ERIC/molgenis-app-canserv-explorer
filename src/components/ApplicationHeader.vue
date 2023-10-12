@@ -82,6 +82,20 @@
               </td>
             </tr>
           </td>
+          <td>
+            <tr>
+              <td colspan='2'>
+                <img src="@/assets/service_field_icons/011_elsi_dimensions.svg" height="24" width="24" id="collectionDetailServiceField"/>
+              </td>
+              <td colspan='2'>
+                Ethical, legal and socio-economic (ELSI) dimensions
+              </td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+          </td>
         </table>
       </div>
       <div class="row my-2">
