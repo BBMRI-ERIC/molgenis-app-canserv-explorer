@@ -79,7 +79,7 @@ export default {
       return
     }
 
-    let url = '/api/data/eu_bbmri_eric_collections?size=1&filter=id&q='
+    let url = '/api/data/canserv_services?size=1&filter=id&q='
     for (const activeFilterName in activeFilterNames) {
       const name = activeFilterNames[activeFilterName]
       if (state.filters.satisfyAll.includes(name)) {
