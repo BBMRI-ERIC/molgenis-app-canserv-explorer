@@ -3,6 +3,7 @@ const i18n = {
     select_all_collections: 'Select all services',
     deselect_all_collections: 'Deselect all services',
     request: 'Request',
+    contact_helpdesk: 'Contact helpdesk',
     close: 'Close',
     home: 'Back to the CanSERV service explorer',
     view: 'View',
