@@ -31,6 +31,7 @@
           </ul>
         </div>
         -->
+        <!-- TODO: replace biobank-card v-for by table to show collections from biobanksShown -->
         <biobank-card v-for="biobank in biobanksShown"
           :key="biobank.id || biobank"
           :biobank="biobank"
