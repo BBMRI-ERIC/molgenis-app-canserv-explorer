@@ -129,14 +129,13 @@
           <span class="mr-2">Settings</span>
           <font-awesome-icon icon="cog" />
         </router-link>
-        <b-button variant="primary">
+        <b-button variant="primary" class="mr-2">
           <span>
-            <a href="mailto:helpdesk@wherever?subject=Service catalogue related question&body=add links to selected services">
+            <a class="link-color" href="mailto:helpdesk@wherever?subject=Service catalogue related question&body=add links to selected services">
               {{ uiText["contact_helpdesk"] }}
             </a>
           </span>
         </b-button>
-        ...
         <b-button variant="primary" @click="showCart = !showCart">
           <span>
             {{ uiText["request"] }}
@@ -404,6 +403,22 @@ export default {
   position: relative;
   top: 2px; /* aligning it with the dropwdowns */
   width: 44%;
+}
+
+.link-color {
+  color: white !important;
+}
+
+.link-color:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.link-color:hover {
+ color: red;
+ background-color: transparent;
+ text-decoration: underline;
 }
 </style>
 
