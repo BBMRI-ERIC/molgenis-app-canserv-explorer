@@ -129,12 +129,22 @@
           <span class="mr-2">Settings</span>
           <font-awesome-icon icon="cog" />
         </router-link>
-        <b-button variant="primary" @click="showCart = !showCart">
-          <span>{{ uiText["contact_helpdesk"] }}</span>
+        <b-button variant="primary">
+          <span>
+            <a href="mailto:helpdesk@wherever?subject=Service catalogue related question&body=add links to selected services">
+              {{ uiText["contact_helpdesk"] }}
+            </a>
+          </span>
         </b-button>
         ...
-        <b-button variant="primary" @click="showCart = !showCart"><span>{{ uiText["request"] }}</span><span class="badge badge-light ml-2">
-            {{ selectedCollections.length }}</span></b-button>
+        <b-button variant="primary" @click="showCart = !showCart">
+          <span>
+            {{ uiText["request"] }}
+          </span>
+          <span class="badge badge-light ml-2">
+            {{ selectedCollections.length }}
+          </span>
+        </b-button>
       </div>
     </div>
     <div class="row mb-2">
