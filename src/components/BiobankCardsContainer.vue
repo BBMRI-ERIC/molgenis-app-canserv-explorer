@@ -38,6 +38,7 @@
           https://bootstrap-vue.org/docs/components/table#custom-data-rendering -->
         <b-table small :fields="collectiontablefields" :items="createCollectionTable" responsive="sm">
           <template v-slot:cell(selected)="row">
+            <!-- TODO: center checkbox -->
             <b-form-group>
               <input type="checkbox" v-model="row.item.selected" />
             </b-form-group>
@@ -45,6 +46,38 @@
           <!-- A virtual column -->
           <template #cell(index)="data">
             {{ data.index + 1 }}
+          </template>
+
+          <!-- Link to the service details page -->
+          <template #cell(service_field_id)="data">
+            <!--  {{ data.item.service_field_id }} -->
+            <span v-if="data.item.service_field_id == '001_disease_models'">
+              <img src="@/assets/service_field_icons/001_disease_models.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
+            <span v-if="data.item.service_field_id == '002_advanced_technologies_for_personalised_oncology'">
+              <img src="@/assets/service_field_icons/002_advanced_technologies_for_personalised_oncology.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
+            <span v-if="data.item.service_field_id == '003_biomarkerResearch_development_and_validation'">
+              <img src="@/assets/service_field_icons/003_biomarkerResearch_development_and_validation.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
+            <span v-if="data.item.service_field_id == '004_new_therapeutic_solutions'">
+              <img src="@/assets/service_field_icons/004_new_therapeutic_solutions.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
+            <span v-if="data.item.service_field_id == '005_accelerated_translation_into_personalised_oncology_clinical_practice'">
+              <img src="@/assets/service_field_icons/005_accelerated_translation_into_personalised_oncology_clinical_practice.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
+            <span v-if="data.item.service_field_id == '006_open_digital_research_services'">
+              <img src="@/assets/service_field_icons/006_open_digital_research_services.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
+            <span v-if="data.item.service_field_id == '007_access_to_human_samples_and_data'">
+              <img src="@/assets/service_field_icons/007_access_to_human_samples_and_data.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
+            <span v-if="data.item.service_field_id == '010_training'">
+              <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
+            <span v-if="data.item.service_field_id == '011_elsi_dimensions'">
+              <img src="@/assets/service_field_icons/011_elsi_dimensions.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
           </template>
 
           <!-- Link to the service details page -->
@@ -123,7 +156,8 @@ export default {
   data () {
     return {
       collectiontablefields: [
-        { key: 'selected', label: 'Selected', sortable: false },
+        { key: 'selected', label: 'Request', sortable: false },
+        { key: 'service_field_id', label: 'Field', sortable: false },
         { key: 'name', label: 'Name', sortable: false },
         { key: 'description', label: 'Description', sortable: false },
         { key: 'provider', label: 'Provider', sortable: false }
@@ -148,6 +182,7 @@ export default {
             provider: biobank.name,
             providerId: biobank.id,
             name: biobank.collections[i].name,
+            service_field_id: biobank.collections[i].service_field[0].id,
             description: biobank.collections[i].description,
             id: biobank.collections[i].id
           }
