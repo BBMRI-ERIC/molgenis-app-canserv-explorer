@@ -15,28 +15,13 @@
 
       <div
         class="d-flex justify-content-center flex-wrap biobank-cards-container">
-        <!-- {{debug("BiobankCardContainer-biobank-card biobanksShown-1")}}
-        {{debug("BiobankCardContainer-biobank-card biobanksShown-1", JSON.stringify(biobanksShown))}}
-        {{debug("BiobankCardContainer-biobank-card biobanksShown-2", biobanksShown.length)}}
-        {{debug("BiobankCardContainer-biobank-card biobanksShown-2")}}
-        <div v-for="biobank in biobanksShown" :key="biobank.id || biobank">
-          <ul>
-            {{ debug("BiobankCardContainer-biobank-card loop biobanksShown 1") }}
-            {{ debug("BiobankCardContainer-biobank-card loop biobanksShown 1.1", biobank) }}
-            {{ debug("BiobankCardContainer-biobank-card loop biobanksShown 2") }}
-            {{ debug("BiobankCardContainer-biobank-card loop biobanksShown 2.1", JSON.stringify(biobank)) }}
-            {{ debug("BiobankCardContainer-biobank-card loop biobanksShown 2.2", biobank.id) }}
-            {{ debug("BiobankCardContainer-biobank-card loop biobanksShown 2.3", biobank.name) }}
-            {{ debug("BiobankCardContainer-biobank-card loop biobanksShown 3") }}
-          </ul>
-        </div>
-        -->
-        <!-- TODO: replace biobank-card v-for by table to show collections from biobanksShown
-        replace :fields="" with non-existent value to get info what fields are available -->
+
         <!-- {{  biobanksShown }} -->
         <!-- information on custom rendering:
           https://bootstrap-vue.org/docs/components/table#custom-data-rendering -->
-        <b-table small :fields="collectiontablefields" :items="createCollectionTable" responsive="sm">
+        <!-- DO NOT REMOVE PROPERTY :key="biobanksShown" OR THE RENDERING WILL BREAK
+        NO IDEA, LONG DAY, NEED TO FOLLOW UP ON THIS -->
+        <b-table small :fields="collectiontablefields" :items="createCollectionTable" :key="biobanksShown" responsive="sm">
           <template v-slot:cell(selected)="data">
             <!-- TODO: center checkbox -->
             <!-- TODO: cart - add collection_selector, see BiobankCard.vue -->
@@ -167,9 +152,9 @@ export default {
       collectiontablefields: [
         { key: 'selected', label: 'Request', sortable: false },
         { key: 'service_field_id', label: 'Field', sortable: false },
-        { key: 'name', label: 'Name', sortable: true },
+        { key: 'name', label: 'Name', sortable: false },
         { key: 'description', label: 'Description', sortable: false },
-        { key: 'provider', label: 'Provider', sortable: true }
+        { key: 'provider', label: 'Provider', sortable: false }
         // { key: 'id', label: 'ID', sortable: false, visible: false }
       ]
     }
@@ -178,12 +163,12 @@ export default {
     debug (...args) {
       console.log(...args)
     },
-    onRowSelected (items) {
-      this.selected = items
-      console.log('Selected ROW: ', items[0])
-      console.log('Selected ROW: ', items[0].id)
-      this.$router.push({ path: '/collection/' + this.selected[0].id })
-    },
+    // onRowSelected (items) {
+    //  this.selected = items
+    //  console.log('Selected ROW: ', items[0])
+    //  console.log('Selected ROW: ', items[0].id)
+    //  this.$router.push({ path: '/collection/' + this.selected[0].id })
+    // },
     createCollectionTable () {
       return this.biobanksShown.map(biobank => {
         for (let i = 0; i < biobank.collections.length; i++) {
