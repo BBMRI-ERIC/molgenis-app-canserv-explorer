@@ -31,11 +31,33 @@
           </ul>
         </div>
         -->
-        <!-- TODO: replace biobank-card v-for by table to show collections from biobanksShown -->
+        <!-- TODO: replace biobank-card v-for by table to show collections from biobanksShown
+        replace :fields="" with non-existent value to get info what fields are available -->
+        <!-- {{  biobanksShown }} -->
+        <b-table :items="createCollectionTable" :fields="collectiontablefields"
+          :select-mode="selectMode"
+          responsive="sm"
+          ref="selectableTable"
+          selectable
+          @row-selected="onRowSelected">
+          <template #cell(selected)="{ rowSelected }">
+            <template v-if="rowSelected">
+              <span aria-hidden="true">&check;</span>
+              <span class="sr-only">Selected</span>
+            </template>
+            <template v-else>
+              <span aria-hidden="true">&nbsp;</span>
+              <span class="sr-only">Not selected</span>
+            </template>
+          </template>
+        </b-table>
+        <!--
         <biobank-card v-for="biobank in biobanksShown"
           :key="biobank.id || biobank"
           :biobank="biobank"
-          :fullSize="biobanksShown.length === 1">        </biobank-card>
+          :fullSize="biobanksShown.length === 1">
+        </biobank-card>
+        -->
       </div>
       <pagination class="mt-4" />
     </div>
@@ -53,7 +75,7 @@
 </template>
 
 <script>
-import BiobankCard from './cards/BiobankCard.vue'
+// import BiobankCard from './cards/BiobankCard.vue'
 import Pagination from './buttons/Pagination.vue'
 import ResultHeader from './ResultHeader.vue'
 import { mapGetters, mapActions, mapState } from 'vuex'
@@ -61,13 +83,39 @@ import { mapGetters, mapActions, mapState } from 'vuex'
 export default {
   name: 'biobank-cards-container',
   components: {
-    BiobankCard,
+    // BiobankCard,
     Pagination,
     ResultHeader
+  },
+  data () {
+    return {
+      collectiontablefields: [
+        { key: 'selected', label: 'Selected', sortable: false },
+        { key: 'name', label: 'Name', sortable: true },
+        { key: 'description', label: 'Description', sortable: true },
+        { key: 'id', label: 'ID', sortable: false, visible: false }
+      ]
+    }
   },
   methods: {
     debug (...args) {
       console.log(...args)
+    },
+    onRowSelected (items) {
+      this.selected = items
+      console.log('Selected ROW: ', items[0])
+      console.log('Selected ROW: ', items[0].id)
+    },
+    createCollectionTable () {
+      /*       for (let i = 0; i < this.biobanksShown.length; i++) {
+        this.biobanksShown[i].collections = this.biobanksShown[i].collections.name
+      } */
+
+      return this.biobanksShown.map(biobank => {
+        for (let i = 0; i < biobank.collections.length; i++) {
+          return biobank.collections[i]
+        }
+      })
     },
     ...mapActions(['GetBiobanks', 'QueryBiobanks'])
   },
