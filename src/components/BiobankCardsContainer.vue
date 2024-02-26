@@ -37,13 +37,20 @@
         <!-- information on custom rendering:
           https://bootstrap-vue.org/docs/components/table#custom-data-rendering -->
         <b-table small :fields="collectiontablefields" :items="createCollectionTable" responsive="sm">
-          <template v-slot:cell(selected)="row">
+          <template v-slot:cell(selected)="data">
             <!-- TODO: center checkbox -->
+            <!-- TODO: cart - add collection_selector, see BiobankCard.vue -->
             <b-form-group>
-              <input type="checkbox" v-model="row.item.selected" />
+              <!-- <input type="checkbox" v-model="row.item.selected" /> -->
+              <collection-selector
+                      class="ml-auto"
+                      :collectionData=data.item.collection
+                      iconOnly
+                      bookmark>
+              </collection-selector>
             </b-form-group>
           </template>
-          <!-- A virtual column -->
+          <!-- A virtual column to store the index -->
           <template #cell(index)="data">
             {{ data.index + 1 }}
           </template>
@@ -128,7 +135,7 @@
       <pagination class="mt-4" />
     </div>
     <div v-else-if="!loading && foundBiobanks === 0" class="status-text">
-      <h4>No service providers were found</h4>
+      <h4>No services were found</h4>
     </div>
 
     <div v-else class="status-text">
@@ -145,13 +152,15 @@
 import Pagination from './buttons/Pagination.vue'
 import ResultHeader from './ResultHeader.vue'
 import { mapGetters, mapActions, mapState } from 'vuex'
+import CollectionSelector from './buttons/CollectionSelector.vue'
 
 export default {
   name: 'biobank-cards-container',
   components: {
     // BiobankCard,
     Pagination,
-    ResultHeader
+    ResultHeader,
+    CollectionSelector
   },
   data () {
     return {
@@ -180,6 +189,7 @@ export default {
         for (let i = 0; i < biobank.collections.length; i++) {
           var retVal = {
             provider: biobank.name,
+            collection: biobank.collections[i],
             providerId: biobank.id,
             name: biobank.collections[i].name,
             service_field_id: biobank.collections[i].service_field[0].id,
