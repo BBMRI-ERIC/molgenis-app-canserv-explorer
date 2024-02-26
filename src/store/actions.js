@@ -155,7 +155,7 @@ export default {
    */
   async SendToARIA ({ state, getters, commit }) {
     const ariaBaseURL = 'https://aria.canserv.eu/submit-proposal/new?platform_reference='
-    const ariaParameters = '&acid=canserv&pid=0&cid=canserv-first-open-call'
+    const ariaParameters = '&acid=canserv&pid=0&cid=257'
     const ariaMolgenisBaseURL = 'http://directory.canserv.eu/api/v2/:'
     const collections = getters.selectedCollections
     console.log('SendToARIA-1-collections', collections)

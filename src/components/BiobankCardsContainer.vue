@@ -6,7 +6,7 @@
       <div class="d-flex mb-4 justify-content-between">
         <result-header v-if="!loading" class="w-25" />
 
-        <pagination class="align-self-center" />
+        <!-- <pagination class="align-self-center" /> -->
         <!-- Alignment block -->
         <div class="w-25"></div>
       </div>
@@ -34,8 +34,40 @@
         <!-- TODO: replace biobank-card v-for by table to show collections from biobanksShown
         replace :fields="" with non-existent value to get info what fields are available -->
         <!-- {{  biobanksShown }} -->
+        <!-- information on custom rendering:
+          https://bootstrap-vue.org/docs/components/table#custom-data-rendering -->
+        <b-table small :fields="collectiontablefields" :items="createCollectionTable" responsive="sm">
+          <template v-slot:cell(selected)="row">
+            <b-form-group>
+              <input type="checkbox" v-model="row.item.selected" />
+            </b-form-group>
+          </template>
+          <!-- A virtual column -->
+          <template #cell(index)="data">
+            {{ data.index + 1 }}
+          </template>
+
+          <!-- Link to the service details page -->
+          <template #cell(name)="data">
+            <!-- <b class="text-info">{{ data.item.name }}</b> -->
+            <!--path: '/collection/' + this.selected[0].id-->
+            <b class="text-info">
+              <router-link :to="'/collection/' + data.item.id">{{ data.item.name }}</router-link>
+            </b>
+          </template>
+
+          <!-- Link to the service details page -->
+          <template #cell(provider)="data">
+            <!-- <b class="text-info">{{ data.item.provider }}</b> -->
+            <!--path: '/collection/' + this.selected[0].id-->
+            <b class="text-info">
+              <router-link :to="'/biobank/' + data.item.providerId">{{ data.item.provider }}</router-link>
+            </b>
+          </template>
+
+        </b-table>
+        <!--
         <b-table :items="createCollectionTable" :fields="collectiontablefields"
-          :select-mode="selectMode"
           responsive="sm"
           ref="selectableTable"
           selectable
@@ -51,6 +83,7 @@
             </template>
           </template>
         </b-table>
+        -->
         <!--
         <biobank-card v-for="biobank in biobanksShown"
           :key="biobank.id || biobank"
@@ -91,9 +124,10 @@ export default {
     return {
       collectiontablefields: [
         { key: 'selected', label: 'Selected', sortable: false },
-        { key: 'name', label: 'Name', sortable: true },
-        { key: 'description', label: 'Description', sortable: true },
-        { key: 'id', label: 'ID', sortable: false, visible: false }
+        { key: 'name', label: 'Name', sortable: false },
+        { key: 'description', label: 'Description', sortable: false },
+        { key: 'provider', label: 'Provider', sortable: false }
+        // { key: 'id', label: 'ID', sortable: false, visible: false }
       ]
     }
   },
@@ -105,15 +139,21 @@ export default {
       this.selected = items
       console.log('Selected ROW: ', items[0])
       console.log('Selected ROW: ', items[0].id)
+      this.$router.push({ path: '/collection/' + this.selected[0].id })
     },
     createCollectionTable () {
-      /*       for (let i = 0; i < this.biobanksShown.length; i++) {
-        this.biobanksShown[i].collections = this.biobanksShown[i].collections.name
-      } */
-
       return this.biobanksShown.map(biobank => {
         for (let i = 0; i < biobank.collections.length; i++) {
-          return biobank.collections[i]
+          var retVal = {
+            provider: biobank.name,
+            providerId: biobank.id,
+            name: biobank.collections[i].name,
+            description: biobank.collections[i].description,
+            id: biobank.collections[i].id
+          }
+          return retVal
+          // if 1-on-1 mapping from collections on level up:
+          // return biobank.collections[i]
         }
       })
     },
@@ -129,22 +169,14 @@ export default {
       'rsql'
     ]),
     biobanksShown () {
-      console.log('BiobankCardContainer-biobanksShown-1')
       if (this.loading) return []
-      // TODO check biobankRsql and rsql
-      console.log('biobanksShown-2')
-
-      console.log('BiobankCardContainer-biobanksShown-2.1', this.biobankRsql)
-      console.log('BiobankCardContainer-biobanksShown-2.2', this.rsql)
 
       if (this.biobankRsql || this.rsql) {
-        console.log('BiobankCardContainer-biobanksShown-3')
         return this.biobanks.slice(
           this.pageSize * (this.currentPage - 1),
           this.pageSize * this.currentPage
         )
       } else {
-        console.log('BiobankCardContainer-biobanksShown-4')
         return this.biobanks
       }
     },
@@ -154,21 +186,14 @@ export default {
   },
   watch: {
     currentPage () {
-      console.log('BiobankCardContainer-watch-currentPage-biobanksRsql-rsql-1')
       if (!this.biobankRsql && !this.rsql) {
-        console.log('BiobankCardContainer-watch-currentPage-biobanksRsql-rsql-2')
         this.QueryBiobanks()
       }
-      console.log('BiobankCardContainer-watch-currentPage-biobanksRsql-rsql-3')
     },
     biobankIdsToFetch (value) {
-      console.log('BiobankCardContainer-watch-biobankIdsToFetch-1')
-      console.log(value)
       if (value.length) {
-        console.log('BiobankCardContainer-watch-biobankIdsToFetch-2')
         this.GetBiobanks(value)
       }
-      console.log('BiobankCardContainer-watch-biobankIdsToFetch-3')
     }
   }
 }
