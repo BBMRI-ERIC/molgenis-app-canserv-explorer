@@ -64,6 +64,9 @@
             <span v-if="data.item.service_field_id == '007_access_to_human_samples_and_data'">
               <img src="@/assets/service_field_icons/007_access_to_human_samples_and_data.svg" height="24" width="24" id="collectionDetailServiceField"/>
             </span>
+            <span v-if="data.item.service_field_id == '009_planning_and_design_of_complex_clinical_trials'">
+              <img src="@/assets/service_field_icons/009_planning_and_design_of_complex_clinical_trials.svg" height="24" width="24" id="collectionDetailServiceField"/>
+            </span>
             <span v-if="data.item.service_field_id == '010_training'">
               <img src="@/assets/service_field_icons/010_training.svg" height="24" width="24" id="collectionDetailServiceField"/>
             </span>
