@@ -167,9 +167,9 @@ export default {
       collectiontablefields: [
         { key: 'selected', label: 'Request', sortable: false },
         { key: 'service_field_id', label: 'Field', sortable: false },
-        { key: 'name', label: 'Name', sortable: false },
+        { key: 'name', label: 'Name', sortable: true },
         { key: 'description', label: 'Description', sortable: false },
-        { key: 'provider', label: 'Provider', sortable: false }
+        { key: 'provider', label: 'Provider', sortable: true }
         // { key: 'id', label: 'ID', sortable: false, visible: false }
       ]
     }
