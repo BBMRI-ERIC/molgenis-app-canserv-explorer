@@ -25,6 +25,12 @@
                 <span class="font-weight-bold mr-1">Institute:</span>
                 <span>{{ info.service_provider.name_of_institue }}</span>
               </li>
+              <div v-if="info.service_provider.url">
+                <span class="fa fa-fw fa-globe mr-2" aria-hidden="true"></span>
+                <a :href="info.service_provider.url" target="_blank" rel="noopener noreferrer">
+                  <span>Website</span>
+                </a>
+              </div>
               <!--
               <li v-if="info.contact.name">
                 <span class="font-weight-bold mr-1">Contact:</span>
