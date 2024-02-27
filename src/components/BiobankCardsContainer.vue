@@ -21,6 +21,7 @@
           https://bootstrap-vue.org/docs/components/table#custom-data-rendering -->
         <!-- DO NOT REMOVE PROPERTY :key="biobanksShown" OR THE RENDERING WILL BREAK
         NO IDEA, LONG DAY, NEED TO FOLLOW UP ON THIS -->
+
         <b-table small :fields="collectiontablefields" :items="createCollectionTable" :key="biobanksShown" responsive="sm">
           <template v-slot:cell(selected)="data">
             <!-- TODO: center checkbox -->
@@ -173,22 +174,24 @@ export default {
     //  this.$router.push({ path: '/collection/' + this.selected[0].id })
     // },
     createCollectionTable () {
-      return this.biobanksShown.map(biobank => {
-        for (let i = 0; i < biobank.collections.length; i++) {
+      const collectionReturn = []
+      for (let k = 0; k < this.biobanksShown.length; k++) {
+        for (let i = 0; i < this.biobanksShown[k].collections.length; i++) {
           var retVal = {
-            provider: biobank.name,
-            collection: biobank.collections[i],
-            providerId: biobank.id,
-            name: biobank.collections[i].name,
-            service_field_id: biobank.collections[i].service_field[0].id,
-            description: biobank.collections[i].description,
-            id: biobank.collections[i].id
+            provider: this.biobanksShown[k].name,
+            collection: this.biobanksShown[k].collections[i],
+            providerId: this.biobanksShown[k].id,
+            name: this.biobanksShown[k].collections[i].name,
+            service_field_id: this.biobanksShown[k].collections[i]?.service_field[0]?.id || '',
+            description: this.biobanksShown[k].collections[i].description,
+            id: this.biobanksShown[k].collections[i].id
           }
-          return retVal
+          collectionReturn.push(retVal)
           // if 1-on-1 mapping from collections on level up:
           // return biobank.collections[i]
         }
-      })
+      }
+      return collectionReturn
     },
     ...mapActions(['GetBiobanks', 'QueryBiobanks'])
   },
