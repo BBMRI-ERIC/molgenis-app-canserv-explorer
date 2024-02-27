@@ -136,6 +136,9 @@ There are 2 ways to test and develop in apps for MOLGENIS.
 For local testing you can execute the following commands:
 
 ```bash
+# Make sure you have the right node version
+nvm use v14.21.3
+
 # To install the application
 yarn install
 
