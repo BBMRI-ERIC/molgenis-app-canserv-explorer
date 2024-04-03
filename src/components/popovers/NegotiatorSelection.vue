@@ -131,7 +131,7 @@ export default {
   },
   methods: {
     ...mapMutations(['RemoveCollectionsFromSelection']),
-    ...mapActions(['SendToARIA', 'SendToNegotiator']),
+    ...mapActions(['SendToARIA', 'SendToNegotiator', 'SendToARIAwithPID']),
     openInNewTab (url) {
       window.open(url, '_blank', 'noreferrer')
     },
@@ -181,7 +181,8 @@ export default {
     },
     sendRequest () {
       this.cartVisible = false
-      this.SendToARIA()
+      this.SendToARIAwithPID({ ARIApid: 257 })
+      // this.SendToARIA()
       // this.SendToNegotiator()
     }
   },
