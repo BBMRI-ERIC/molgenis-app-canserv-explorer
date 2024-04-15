@@ -93,7 +93,7 @@
             !selectedCollections.length
           "
           class="btn btn-secondary ml-auto"
-          @click="sendRequest">{{ negotiatorChallengeCallXButtonText }}
+          @click="sendRequestChallengeCall">{{ negotiatorChallengeCallXButtonText }}
         </b-button>
         <button type="button" class="btn btn-primary" @click="openInNewTab('https://www.canserv.eu/calls/open-call-for-transnational-service-provision/')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
@@ -133,7 +133,7 @@ export default {
   },
   methods: {
     ...mapMutations(['RemoveCollectionsFromSelection']),
-    ...mapActions(['SendToARIA', 'SendToNegotiator', 'SendToARIAwithPID']),
+    ...mapActions(['SendToARIA', 'SendToNegotiator', 'SendToARIAwithCID', 'SendToBETAARIAwithCID']),
     openInNewTab (url) {
       window.open(url, '_blank', 'noreferrer')
     },
@@ -181,9 +181,13 @@ export default {
         bookmark: this.bookmark
       })
     },
+    sendRequestChallengeCall () {
+      this.cartVisible = false
+      this.SendToBETAARIAwithCID({ ARIAcid: 'canserv-2nd-challenge---driven-call' })
+    },
     sendRequest () {
       this.cartVisible = false
-      this.SendToARIAwithPID({ ARIApid: 257 })
+      this.SendToARIAwithCID({ ARIAcid: 257 })
       // this.SendToARIA()
       // this.SendToNegotiator()
     }
