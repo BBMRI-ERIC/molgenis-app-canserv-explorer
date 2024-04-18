@@ -183,7 +183,7 @@ export default {
     },
     sendRequestChallengeCall () {
       this.cartVisible = false
-      this.SendToBETAARIAwithCID({ ARIAcid: 'canserv-2nd-challenge---driven-call' })
+      this.SendToARIAwithCID({ ARIAcid: 'canserv-2nd-challenge---driven-call' })
     },
     sendRequest () {
       this.cartVisible = false

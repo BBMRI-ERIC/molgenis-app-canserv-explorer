@@ -1,7 +1,7 @@
 {
   "name": "molgenis-app-canserv-explorer",
   "license": "LGPL-3.0",
-  "version": "1.3.5",
+  "version": "1.3.7",
   "description": "Vue application for the CanSERV service explorer; A card detail view on BBMRI-ERIC service providers / service data. Based on molgenis-app-biobank-explorer version 7.20.0",
   "scripts": {
     "serve": "vue-cli-service serve",
