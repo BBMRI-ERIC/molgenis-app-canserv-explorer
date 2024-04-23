@@ -148,7 +148,34 @@ export default {
 
     commit('SetQualityStandardDictionary', response)
   },
-
+  /**
+   * Transform the state into an ARIA magic link.
+   * calls the magic link endpoint by opening a new browser tab
+   */
+  async SendToBETAARIAwithCID ({ getters }, { ARIAcid }) {
+    const ariaBaseURL = 'https://beta.structuralbiology.eu/submit-proposal/new?platform_reference='
+    const ariaParameters = '&acid=canserv&pid=0&cid=' + ARIAcid
+    const ariaMolgenisBaseURL = 'http://directory.canserv.eu/api/v2/:'
+    const collections = getters.selectedCollections
+    console.log('SendToARIA-1-collections', collections)
+    const magicLink = ariaBaseURL + collections.map(sc => encodeURIComponent(ariaMolgenisBaseURL + sc.value)).join(',') + ariaParameters
+    console.log('SendToARIA-1-magicLink', magicLink)
+    window.open(magicLink)
+  },
+  /**
+   * Transform the state into an ARIA magic link.
+   * calls the magic link endpoint by opening a new browser tab
+   */
+  async SendToARIAwithCID ({ getters }, { ARIAcid }) {
+    const ariaBaseURL = 'https://aria.canserv.eu/submit-proposal/new?platform_reference='
+    const ariaParameters = '&acid=canserv&pid=0&cid=' + ARIAcid
+    const ariaMolgenisBaseURL = 'http://directory.canserv.eu/api/v2/:'
+    const collections = getters.selectedCollections
+    console.log('SendToARIA-1-collections', collections)
+    const magicLink = ariaBaseURL + collections.map(sc => encodeURIComponent(ariaMolgenisBaseURL + sc.value)).join(',') + ariaParameters
+    console.log('SendToARIA-1-magicLink', magicLink)
+    window.open(magicLink)
+  },
   /**
    * Transform the state into an ARIA magic link.
    * calls the magic link endpoint by opening a new browser tab

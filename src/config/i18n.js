@@ -13,6 +13,8 @@ const i18n = {
     remove_all: 'Remove all',
     send_to_negotiator: 'Start your proposal in Negotiator',
     send_to_aria: 'Start your proposal in ARIA',
+    send_to_aria_open_call: 'Apply through open call until 21st May',
+    send_to_aria_challenge_call_x: 'Apply through challenge-driven call: "Reaching an Understanding of Cancer"',
     send_to_podium: 'Send to Podium',
     card_biobank_details: 'View Service Provider',
     card_collections_details: 'View Services',
