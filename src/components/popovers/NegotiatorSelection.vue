@@ -10,7 +10,8 @@
     body-class="pb-0"
     v-model="cartVisible"
     @hide="cartVisible = false">
-    <template v-if="collectionCart.length > 0">
+
+    <template v-if="selectedCollections.length > 1">
       <div
         class="card mb-3 border"
         :key="`${cart.biobankLabel}-${index}`"
@@ -47,7 +48,7 @@
       </div>
     </template>
     <template v-else>
-      <p>You haven't selected any services yet.</p>
+      <p>Please select at least 2 services to proceed.</p>
     </template>
     <p v-if="isPodium && !collectionsInPodium.length">
       Sorry, none of the samples are currently in Podium.
@@ -75,7 +76,7 @@
         <b-button
           :disabled="
             (isPodium && !collectionsInPodium.length) ||
-            !selectedCollections.length
+            selectedCollections.length < 2
           "
           class="btn btn-secondary ml-auto"
           @click="sendRequestChallengeCall">{{ negotiatorChallengeCallXButtonText }}
@@ -91,7 +92,7 @@
         <b-button
           :disabled="
             (isPodium && !collectionsInPodium.length) ||
-            !selectedCollections.length
+            selectedCollections.length < 2
           "
           class="btn btn-secondary ml-auto"
           @click="sendRequest3rdChallengeCall">{{ negotiatorChallengeCall3ButtonText }}
