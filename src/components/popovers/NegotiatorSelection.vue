@@ -88,6 +88,24 @@
                 </svg>
         </button>
       </div>
+      <!-- check if URL param "aria_pid" is present using this.$route.query
+        if so, only display the button to forward to ARIA for this pid, otherwise display all available pids with info buttons form the website -->
+        <div class="ml-auto">
+        <b-button
+          :disabled="
+            (isPodium && !collectionsInPodium.length) ||
+            selectedCollections.length < 2
+          "
+          class="btn btn-secondary ml-auto"
+          @click="sendRequest3rdOpenCall">{{ negotiatorOpenCall3ButtonText }}
+        </b-button>
+        <button type="button" class="btn btn-primary" @click="openInNewTab('https://www.canserv.eu/calls/open-call-for-transnational-service-provision/')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
+                  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"></path>
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path>
+                </svg>
+        </button>
+      </div>
     </template>
   </b-modal>
 </template>
@@ -171,6 +189,10 @@ export default {
       this.cartVisible = false
       this.SendToARIAwithCID({ ARIAcid: 'canserv-2nd-challenge---driven-call' })
     },
+    sendRequest3rdOpenCall () {
+      this.cartVisible = false
+      this.SendToARIAwithCID({ ARIAcid: 'canserv-third-open-call ' })
+    },
     sendRequest3rdChallengeCall () {
       this.cartVisible = false
       this.SendToARIAwithCID({ ARIAcid: 'canserv-3rd-challenge-driven-call' })
@@ -225,6 +247,9 @@ export default {
     },
     negotiatorChallengeCall3ButtonText () {
       return this.isPodium ? this.uiText.send_to_podium : this.uiText.send_to_aria_challenge_call_3
+    },
+    negotiatorOpenCall3ButtonText () {
+      return this.isPodium ? this.uiText.send_to_podium : this.uiText.send_to_aria_open_call_3
     },
     currentSelectedCollections () {
       return this.isPodium ? this.collectionsInPodium : this.selectedCollections
