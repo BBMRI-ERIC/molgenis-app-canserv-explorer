@@ -173,7 +173,7 @@ export default {
     },
     sendRequest3rdOpenCall () {
       this.cartVisible = false
-      this.SendToARIAwithCID({ ARIAcid: 'canserv-third-open-call ' })
+      this.SendToARIAwithCID({ ARIAcid: 'canserv-third-open-call' })
     },
     sendRequest3rdChallengeCall () {
       this.cartVisible = false
