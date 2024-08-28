@@ -11,7 +11,7 @@
     v-model="cartVisible"
     @hide="cartVisible = false">
 
-    <template v-if="selectedCollections.length > 1">
+    <template v-if="selectedCollections.length > 0">
       <div
         class="card mb-3 border"
         :key="`${cart.biobankLabel}-${index}`"
@@ -48,7 +48,7 @@
       </div>
     </template>
     <template v-else>
-      <p>Please select at least 2 services to proceed.</p>
+      <p>Please select at least one service to proceed.</p>
     </template>
     <p v-if="isPodium && !collectionsInPodium.length">
       Sorry, none of the samples are currently in Podium.
