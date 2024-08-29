@@ -76,7 +76,7 @@
         <b-button
           :disabled="
             (isPodium && !collectionsInPodium.length) ||
-            selectedCollections.length < 2
+            selectedCollections.length < 1
           "
           class="btn btn-secondary ml-auto"
           @click="sendRequest3rdOpenCall">{{ negotiatorOpenCall3ButtonText }}
