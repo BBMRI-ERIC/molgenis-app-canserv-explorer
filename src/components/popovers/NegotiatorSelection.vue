@@ -70,8 +70,10 @@
       <div class="ml-auto">
         <b-button class="btn btn-dark mr-2" @click="cartVisible = false">{{ uiText['close'] }}</b-button>
       </div>
-      <!-- check if URL param "aria_pid" is present using this.$route.query
-        if so, only display the button to forward to ARIA for this pid, otherwise display all available pids with info buttons form the website -->
+      <span class="text-white font-weight-bold d-block">
+        There is no call open at the moment by canSERV.
+      </span>
+      <!--
         <div class="ml-auto">
         <b-button
           :disabled="
@@ -88,6 +90,7 @@
                 </svg>
         </button>
       </div>
+    -->
     </template>
   </b-modal>
 </template>
