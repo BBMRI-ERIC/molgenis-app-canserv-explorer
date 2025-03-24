@@ -121,6 +121,11 @@
         <a href="https://www.canserv.eu/wp-content/uploads/User-Guide-How-to-browse-and-select-services.pdf">How to browse and select services in the Catalogue Platform</a>
       </div>
       -->
+      <!--
+      <div class="col text-center">
+        <a href="mailto:calls@canserv.eu">Contact us</a>
+      </div>
+      -->
       <div class="col text-right">
         <router-link
           v-if="showSettings"

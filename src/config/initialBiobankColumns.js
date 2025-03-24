@@ -1,5 +1,5 @@
 const initialBiobankColumns = [
-  { label: 'Id:', column: 'id', type: 'string', showCopyIcon: true },
+//  { label: 'Id:', column: 'id', type: 'string', showCopyIcon: true },
   { label: 'Description:', column: 'description', type: 'longtext', showOnBiobankCard: true },
   { label: 'Name of Institute:', column: 'name_of_institue', type: 'string', showOnBiobankCard: true },
   { label: 'Acronym:', column: 'acronym', type: 'string', showOnBiobankCard: true },
