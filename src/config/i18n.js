@@ -18,6 +18,7 @@ const i18n = {
     send_to_aria_challenge_call_3: 'Apply through challenge-driven call: "Revolutionising Cancer Patient Care"',
     send_to_aria_challenge_call_4: 'Apply through Call for Early Career Researchers',
     send_to_aria_open_call_3: 'Apply through Open Call',
+    send_to_aria_open_call_4: 'Apply through Open Call',
     send_to_podium: 'Send to Podium',
     card_biobank_details: 'View Service Provider',
     card_collections_details: 'View Services',
